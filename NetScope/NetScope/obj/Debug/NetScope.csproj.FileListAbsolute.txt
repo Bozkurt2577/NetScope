@@ -1,0 +1,10 @@
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\bin\Debug\NetScope.exe.config
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\bin\Debug\NetScope.exe
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\bin\Debug\NetScope.pdb
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.csproj.AssemblyReference.cache
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.Form1.resources
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.Properties.Resources.resources
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.csproj.GenerateResource.cache
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.csproj.CoreCompileInputs.cache
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.exe
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.pdb

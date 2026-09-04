@@ -18,21 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\bozkurt\\source\\repos\\NetScope\\NetScope\\NetScope\\Form1.cs",
-              "RelativeDocumentMoniker": "NetScope\\Form1.cs",
-              "ToolTip": "C:\\Users\\bozkurt\\source\\repos\\NetScope\\NetScope\\NetScope\\Form1.cs",
-              "RelativeToolTip": "NetScope\\Form1.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAADwvzMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-04T12:45:23.691Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -42,8 +29,21 @@
               "ToolTip": "C:\\Users\\bozkurt\\source\\repos\\NetScope\\NetScope\\NetScope\\Form1.cs [Design]",
               "RelativeToolTip": "NetScope\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-03T14:01:54.658Z",
+              "WhenOpened": "2026-09-04T14:49:00.905Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\bozkurt\\source\\repos\\NetScope\\NetScope\\NetScope\\Form1.cs",
+              "RelativeDocumentMoniker": "NetScope\\Form1.cs",
+              "ToolTip": "C:\\Users\\bozkurt\\source\\repos\\NetScope\\NetScope\\NetScope\\Form1.cs",
+              "RelativeToolTip": "NetScope\\Form1.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAuwMIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T12:45:23.691Z",
+              "EditorCaption": ""
             }
           ]
         }
