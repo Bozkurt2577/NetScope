@@ -8,3 +8,6 @@ C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.cspr
 C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.csproj.CoreCompileInputs.cache
 C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.exe
 C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.pdb
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\NetScope.Properties.Resources.en.resources
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\bin\Debug\en\NetScope.resources.dll
+C:\Users\bozkurt\source\repos\NetScope\NetScope\NetScope\obj\Debug\en\NetScope.resources.dll

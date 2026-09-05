@@ -82,7 +82,7 @@ namespace NetScope
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            SayfaGöster(Ayarlar);
         }
 
         private void panel_Paint(object sender, PaintEventArgs e)
@@ -97,8 +97,26 @@ namespace NetScope
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
 
+            comboBox1.Items.Add("Türkçe");
+            comboBox1.Items.Add("English");
+            comboBox1.Items.Add("Français");
+
+
+            if(Properties.Settings.Default.Language == "tr-TR")
+            {
+                comboBox1.SelectedIndex = 0;
+            }
+
+            else
+            {
+                comboBox1.SelectedIndex = 1;
+            }
+
+            UygulamaDiliniUygula();
         }
+        
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
@@ -178,6 +196,7 @@ namespace NetScope
         {
             panelAgim.Visible = false;
             panelHizTesti.Visible = false;
+            Ayarlar.Visible = false;
 
             panel.Visible = true;
             panel.BringToFront();
@@ -198,16 +217,7 @@ namespace NetScope
             SayfaGöster(panelHizTesti);
         }
 
-        private void DilDegistir(string dil)
-        {
-            Properties.Settings.Default.Language = dil;
-            Properties.Settings.Default.Save();
-
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(dil);
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(dil);
-
-            UygulamaDiliniUygula();
-        }
+       
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -223,11 +233,23 @@ namespace NetScope
 
         private void UygulamaDiliniUygula()
         {
-            btnAğim.Text = Strings.MyNetwork;
-            btnIpHesaplayici.Text = Strings.IpCalculator;
-            btnPing.Text = Strings.Ping;
-            btnBilgi.Text = Strings.Information;
-            btnAyarlar.Text = Strings.Settings;
+            btnAğim.Text = Resources.MyNetwork;
+            btnIpHesaplayici.Text = Resources.IpCalculator;
+            btnBilgi.Text = Resources.Information;
+            btnAyarlar.Text = Resources.Settings;
+            lblLanguage.Text = Resources.Language;
         }
+
+        private void DilDegistir(string dil)
+        {
+            Properties.Settings.Default.Language = dil;
+            Properties.Settings.Default.Save();
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(dil);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(dil);
+
+            UygulamaDiliniUygula();
+        }
+
     }
 }

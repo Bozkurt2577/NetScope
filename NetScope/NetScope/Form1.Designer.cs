@@ -37,6 +37,8 @@
             this.btnAğim = new System.Windows.Forms.Button();
             this.lblLogo = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.Ayarlar = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelAgim = new System.Windows.Forms.Panel();
             this.grpAgDurumu = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -57,15 +59,14 @@
             this.lblPing = new System.Windows.Forms.Label();
             this.lblUpload = new System.Windows.Forms.Label();
             this.lblDownload = new System.Windows.Forms.Label();
-            this.Ayarlar = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblLanguage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelContent.SuspendLayout();
+            this.Ayarlar.SuspendLayout();
             this.panelAgim.SuspendLayout();
             this.grpAgDurumu.SuspendLayout();
             this.panelHizTesti.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.Ayarlar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -141,7 +142,7 @@
             this.btnIpHesaplayici.Name = "btnIpHesaplayici";
             this.btnIpHesaplayici.Size = new System.Drawing.Size(75, 45);
             this.btnIpHesaplayici.TabIndex = 2;
-            this.btnIpHesaplayici.Text = "s";
+            this.btnIpHesaplayici.Text = "IP Subnet Hesaplayıcı";
             this.btnIpHesaplayici.UseVisualStyleBackColor = false;
             this.btnIpHesaplayici.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -173,8 +174,8 @@
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
-            this.panelContent.Controls.Add(this.Ayarlar);
             this.panelContent.Controls.Add(this.panelAgim);
+            this.panelContent.Controls.Add(this.Ayarlar);
             this.panelContent.Controls.Add(this.panelHizTesti);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(200, 0);
@@ -182,6 +183,24 @@
             this.panelContent.Size = new System.Drawing.Size(600, 450);
             this.panelContent.TabIndex = 3;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // Ayarlar
+            // 
+            this.Ayarlar.Controls.Add(this.lblLanguage);
+            this.Ayarlar.Controls.Add(this.comboBox1);
+            this.Ayarlar.Location = new System.Drawing.Point(0, 0);
+            this.Ayarlar.Name = "Ayarlar";
+            this.Ayarlar.Size = new System.Drawing.Size(598, 500);
+            this.Ayarlar.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(92, 92);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panelAgim
             // 
@@ -411,22 +430,15 @@
             this.lblDownload.TabIndex = 1;
             this.lblDownload.Text = "Download: -- Mbps";
             // 
-            // Ayarlar
+            // lblLanguage
             // 
-            this.Ayarlar.Controls.Add(this.comboBox1);
-            this.Ayarlar.Location = new System.Drawing.Point(0, 0);
-            this.Ayarlar.Name = "Ayarlar";
-            this.Ayarlar.Size = new System.Drawing.Size(598, 500);
-            this.Ayarlar.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(92, 92);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.ForeColor = System.Drawing.Color.White;
+            this.lblLanguage.Location = new System.Drawing.Point(92, 64);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(19, 13);
+            this.lblLanguage.TabIndex = 1;
+            this.lblLanguage.Text = "Dil";
             // 
             // Form1
             // 
@@ -441,6 +453,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelContent.ResumeLayout(false);
+            this.Ayarlar.ResumeLayout(false);
+            this.Ayarlar.PerformLayout();
             this.panelAgim.ResumeLayout(false);
             this.panelAgim.PerformLayout();
             this.grpAgDurumu.ResumeLayout(false);
@@ -449,7 +463,6 @@
             this.panelHizTesti.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.Ayarlar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -486,6 +499,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel Ayarlar;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblLanguage;
     }
 }
 
