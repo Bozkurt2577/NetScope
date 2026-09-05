@@ -1,13 +1,16 @@
-﻿using System;
+﻿using NetScope.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 
 namespace NetScope
 {
@@ -193,6 +196,38 @@ namespace NetScope
         private void btnHizTestiMenu_Click(object sender, EventArgs e)
         {
             SayfaGöster(panelHizTesti);
+        }
+
+        private void DilDegistir(string dil)
+        {
+            Properties.Settings.Default.Language = dil;
+            Properties.Settings.Default.Save();
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(dil);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(dil);
+
+            UygulamaDiliniUygula();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                DilDegistir("tr-TR");
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                DilDegistir("en");
+            }
+        }
+
+        private void UygulamaDiliniUygula()
+        {
+            btnAğim.Text = Strings.MyNetwork;
+            btnIpHesaplayici.Text = Strings.IpCalculator;
+            btnPing.Text = Strings.Ping;
+            btnBilgi.Text = Strings.Information;
+            btnAyarlar.Text = Strings.Settings;
         }
     }
 }

@@ -121,18 +121,18 @@
     <value>NetScope</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>Bilgi</value>
+    <value>Information</value>
   </data>
   <data name="IpCalculator" xml:space="preserve">
-    <value>IP Subnet Hesaplayıcı</value>
+    <value>Ip Subnet Calculator</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Dil</value>
+    <value>Language</value>
   </data>
   <data name="MyNetwork" xml:space="preserve">
-    <value>Ağım</value>
+    <value>My Network</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Settings</value>
   </data>
 </root>
