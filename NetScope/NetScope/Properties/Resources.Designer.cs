@@ -70,11 +70,29 @@ namespace NetScope.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bağlantı.
+        /// </summary>
+        internal static string Connection {
+            get {
+                return ResourceManager.GetString("Connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bilgi.
         /// </summary>
         internal static string Information {
             get {
                 return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İnternet Hız Testi.
+        /// </summary>
+        internal static string InternetSpeedTest {
+            get {
+                return ResourceManager.GetString("InternetSpeedTest", resourceCulture);
             }
         }
         
@@ -111,6 +129,15 @@ namespace NetScope.Properties {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hız Testi.
+        /// </summary>
+        internal static string SpeedTest {
+            get {
+                return ResourceManager.GetString("SpeedTest", resourceCulture);
             }
         }
     }

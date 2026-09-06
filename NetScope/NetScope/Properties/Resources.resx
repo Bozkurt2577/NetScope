@@ -120,8 +120,14 @@
   <data name="AppName" xml:space="preserve">
     <value>NetScope</value>
   </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Bağlantı</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Bilgi</value>
+  </data>
+  <data name="InternetSpeedTest" xml:space="preserve">
+    <value>İnternet Hız Testi</value>
   </data>
   <data name="IpCalculator" xml:space="preserve">
     <value>IP Subnet Hesaplayıcı</value>
@@ -134,5 +140,8 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
+  </data>
+  <data name="SpeedTest" xml:space="preserve">
+    <value>Hız Testi</value>
   </data>
 </root>

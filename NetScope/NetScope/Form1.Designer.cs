@@ -37,8 +37,6 @@
             this.btnAğim = new System.Windows.Forms.Button();
             this.lblLogo = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.Ayarlar = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelAgim = new System.Windows.Forms.Panel();
             this.grpAgDurumu = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,6 +49,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgYenile = new System.Windows.Forms.Button();
             this.lblBaslik = new System.Windows.Forms.Label();
+            this.Ayarlar = new System.Windows.Forms.Panel();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelHizTesti = new System.Windows.Forms.Panel();
             this.btnHizTestiBaslat = new System.Windows.Forms.Button();
             this.lblHizBaslik = new System.Windows.Forms.Label();
@@ -59,12 +60,11 @@
             this.lblPing = new System.Windows.Forms.Label();
             this.lblUpload = new System.Windows.Forms.Label();
             this.lblDownload = new System.Windows.Forms.Label();
-            this.lblLanguage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelContent.SuspendLayout();
-            this.Ayarlar.SuspendLayout();
             this.panelAgim.SuspendLayout();
             this.grpAgDurumu.SuspendLayout();
+            this.Ayarlar.SuspendLayout();
             this.panelHizTesti.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +88,7 @@
             // 
             // btnHizTestiMenu
             // 
+            this.btnHizTestiMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHizTestiMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnHizTestiMenu.ForeColor = System.Drawing.Color.White;
             this.btnHizTestiMenu.Location = new System.Drawing.Point(61, 268);
@@ -100,6 +101,7 @@
             // 
             // btnAyarlar
             // 
+            this.btnAyarlar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAyarlar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAyarlar.ForeColor = System.Drawing.Color.White;
             this.btnAyarlar.Location = new System.Drawing.Point(61, 385);
@@ -112,6 +114,7 @@
             // 
             // btnBilgi
             // 
+            this.btnBilgi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBilgi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnBilgi.ForeColor = System.Drawing.Color.White;
             this.btnBilgi.Location = new System.Drawing.Point(61, 329);
@@ -124,6 +127,7 @@
             // 
             // btnPing
             // 
+            this.btnPing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPing.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnPing.ForeColor = System.Drawing.Color.White;
             this.btnPing.Location = new System.Drawing.Point(61, 207);
@@ -136,6 +140,7 @@
             // 
             // btnIpHesaplayici
             // 
+            this.btnIpHesaplayici.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIpHesaplayici.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnIpHesaplayici.ForeColor = System.Drawing.Color.White;
             this.btnIpHesaplayici.Location = new System.Drawing.Point(61, 146);
@@ -148,6 +153,7 @@
             // 
             // btnAğim
             // 
+            this.btnAğim.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAğim.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAğim.ForeColor = System.Drawing.Color.White;
             this.btnAğim.Location = new System.Drawing.Point(61, 88);
@@ -174,33 +180,15 @@
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
+            this.panelContent.Controls.Add(this.panelHizTesti);
             this.panelContent.Controls.Add(this.panelAgim);
             this.panelContent.Controls.Add(this.Ayarlar);
-            this.panelContent.Controls.Add(this.panelHizTesti);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(200, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(600, 450);
             this.panelContent.TabIndex = 3;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // Ayarlar
-            // 
-            this.Ayarlar.Controls.Add(this.lblLanguage);
-            this.Ayarlar.Controls.Add(this.comboBox1);
-            this.Ayarlar.Location = new System.Drawing.Point(0, 0);
-            this.Ayarlar.Name = "Ayarlar";
-            this.Ayarlar.Size = new System.Drawing.Size(598, 500);
-            this.Ayarlar.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(92, 92);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panelAgim
             // 
@@ -338,6 +326,34 @@
             this.lblBaslik.TabIndex = 0;
             this.lblBaslik.Text = "Ağ Durumu";
             // 
+            // Ayarlar
+            // 
+            this.Ayarlar.Controls.Add(this.lblLanguage);
+            this.Ayarlar.Controls.Add(this.comboBox1);
+            this.Ayarlar.Location = new System.Drawing.Point(0, 0);
+            this.Ayarlar.Name = "Ayarlar";
+            this.Ayarlar.Size = new System.Drawing.Size(598, 500);
+            this.Ayarlar.TabIndex = 3;
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.ForeColor = System.Drawing.Color.White;
+            this.lblLanguage.Location = new System.Drawing.Point(92, 64);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(19, 13);
+            this.lblLanguage.TabIndex = 1;
+            this.lblLanguage.Text = "Dil";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(92, 92);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // panelHizTesti
             // 
             this.panelHizTesti.Controls.Add(this.btnHizTestiBaslat);
@@ -394,7 +410,7 @@
             // 
             this.lblJitter.AutoSize = true;
             this.lblJitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblJitter.Location = new System.Drawing.Point(288, 217);
+            this.lblJitter.Location = new System.Drawing.Point(288, 164);
             this.lblJitter.Name = "lblJitter";
             this.lblJitter.Size = new System.Drawing.Size(100, 20);
             this.lblJitter.TabIndex = 4;
@@ -404,7 +420,7 @@
             // 
             this.lblPing.AutoSize = true;
             this.lblPing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblPing.Location = new System.Drawing.Point(288, 97);
+            this.lblPing.Location = new System.Drawing.Point(288, 44);
             this.lblPing.Name = "lblPing";
             this.lblPing.Size = new System.Drawing.Size(94, 20);
             this.lblPing.TabIndex = 3;
@@ -414,7 +430,7 @@
             // 
             this.lblUpload.AutoSize = true;
             this.lblUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblUpload.Location = new System.Drawing.Point(21, 217);
+            this.lblUpload.Location = new System.Drawing.Point(21, 164);
             this.lblUpload.Name = "lblUpload";
             this.lblUpload.Size = new System.Drawing.Size(136, 20);
             this.lblUpload.TabIndex = 2;
@@ -424,21 +440,11 @@
             // 
             this.lblDownload.AutoSize = true;
             this.lblDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblDownload.Location = new System.Drawing.Point(22, 97);
+            this.lblDownload.Location = new System.Drawing.Point(22, 44);
             this.lblDownload.Name = "lblDownload";
             this.lblDownload.Size = new System.Drawing.Size(158, 20);
             this.lblDownload.TabIndex = 1;
             this.lblDownload.Text = "Download: -- Mbps";
-            // 
-            // lblLanguage
-            // 
-            this.lblLanguage.AutoSize = true;
-            this.lblLanguage.ForeColor = System.Drawing.Color.White;
-            this.lblLanguage.Location = new System.Drawing.Point(92, 64);
-            this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(19, 13);
-            this.lblLanguage.TabIndex = 1;
-            this.lblLanguage.Text = "Dil";
             // 
             // Form1
             // 
@@ -453,12 +459,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelContent.ResumeLayout(false);
-            this.Ayarlar.ResumeLayout(false);
-            this.Ayarlar.PerformLayout();
             this.panelAgim.ResumeLayout(false);
             this.panelAgim.PerformLayout();
             this.grpAgDurumu.ResumeLayout(false);
             this.grpAgDurumu.PerformLayout();
+            this.Ayarlar.ResumeLayout(false);
+            this.Ayarlar.PerformLayout();
             this.panelHizTesti.ResumeLayout(false);
             this.panelHizTesti.PerformLayout();
             this.groupBox1.ResumeLayout(false);

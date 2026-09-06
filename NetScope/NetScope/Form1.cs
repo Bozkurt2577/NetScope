@@ -101,7 +101,6 @@ namespace NetScope
 
             comboBox1.Items.Add("Türkçe");
             comboBox1.Items.Add("English");
-            comboBox1.Items.Add("Français");
 
 
             if(Properties.Settings.Default.Language == "tr-TR")
