@@ -232,11 +232,38 @@ namespace NetScope
 
         private void UygulamaDiliniUygula()
         {
-            btnAğim.Text = Resources.MyNetwork;
-            btnIpHesaplayici.Text = Resources.IpCalculator;
-            btnBilgi.Text = Resources.Information;
-            btnAyarlar.Text = Resources.Settings;
-            lblLanguage.Text = Resources.Language;
+            string dil = Properties.Settings.Default.Language;
+
+            if (dil == "tr-TR")
+            {
+                btnAğim.Text = "Ağım";
+                btnIpHesaplayici.Text = "IP Subnet Hesaplayıcı";
+                btnBilgi.Text = "Bilgi";
+                btnAyarlar.Text = "Ayarlar";
+                lblLanguage.Text = "Dil";
+                btnHizTestiMenu.Text = "Hız Testi";
+                btnHizTestiBaslat.Text = "Hız Testini Başlat";
+                groupBox1.Text = "Hız Testi";
+                lblBaslik.Text = "İnternet Hız Testi";
+                btnAgYenile.Text = "Ağı Yenile";
+                label1.Text = "Bağlantı";
+                grpAgDurumu.Text = "Bağlantı Bilgileri";
+            }
+            else
+            {
+                btnAğim.Text = "My Network";
+                btnIpHesaplayici.Text = "IP Subnet Calculator";
+                btnBilgi.Text = "Information";
+                btnAyarlar.Text = "Settings";
+                lblLanguage.Text = "Language";
+                btnHizTestiMenu.Text = "Speed Test";
+                btnHizTestiBaslat.Text = "Start Speed Test";
+                groupBox1.Text = "Speed Test";
+                lblBaslik.Text = "Internet Speed Test";
+                btnAgYenile.Text = "Refresh";
+                label1.Text = "Connection";
+                grpAgDurumu.Text = "Connection Information";
+            }
         }
 
         private void DilDegistir(string dil)
@@ -249,6 +276,5 @@ namespace NetScope
 
             UygulamaDiliniUygula();
         }
-
     }
 }
