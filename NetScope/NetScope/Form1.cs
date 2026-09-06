@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace NetScope
 {
@@ -114,8 +117,10 @@ namespace NetScope
             }
 
             UygulamaDiliniUygula();
+            AgBilgileriniGetir();
+
         }
-        
+
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
@@ -208,7 +213,7 @@ namespace NetScope
 
         private void btnAgYenile_Click(object sender, EventArgs e)
         {
-            
+            AgBilgileriniGetir();
         }
 
         private void btnHizTestiMenu_Click(object sender, EventArgs e)
@@ -276,5 +281,105 @@ namespace NetScope
 
             UygulamaDiliniUygula();
         }
+
+
+        private void AgBilgileriniGetir()
+        {
+            string baglanti = "Bağlı Değil";
+            string ipv4 = "-";
+            string gateway = "-";
+            string dns = "-";
+
+            try
+            {
+                var kartlar = NetworkInterface.GetAllNetworkInterfaces()
+                    .Where(n =>
+                        n.OperationalStatus == OperationalStatus.Up &&
+                        n.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
+                        n.NetworkInterfaceType != NetworkInterfaceType.Tunnel)
+                    .ToList();
+
+                NetworkInterface aktifKart = null;
+
+                // Gateway'i olan IPv4 bağlantıyı bul
+                foreach (var kart in kartlar)
+                {
+                    var ozellikler = kart.GetIPProperties();
+
+                    bool ipv4Var = ozellikler.UnicastAddresses.Any(a =>
+                        a.Address.AddressFamily == AddressFamily.InterNetwork);
+
+                    bool gatewayVar = ozellikler.GatewayAddresses.Any(g =>
+                        g.Address.AddressFamily == AddressFamily.InterNetwork);
+
+                    if (ipv4Var && gatewayVar)
+                    {
+                        aktifKart = kart;
+                        break;
+                    }
+                }
+
+                // Gateway bulunamazsa IPv4 bağlantıyı bul
+                if (aktifKart == null)
+                {
+                    aktifKart = kartlar.FirstOrDefault(k =>
+                        k.GetIPProperties().UnicastAddresses.Any(a =>
+                            a.Address.AddressFamily == AddressFamily.InterNetwork));
+                }
+
+                if (aktifKart != null)
+                {
+                    var ozellikler = aktifKart.GetIPProperties();
+
+                    baglanti = aktifKart.Name;
+
+                    // IPv4
+                    var ipBilgisi = ozellikler.UnicastAddresses
+                        .FirstOrDefault(a =>
+                            a.Address.AddressFamily == AddressFamily.InterNetwork);
+
+                    if (ipBilgisi != null)
+                    {
+                        ipv4 = ipBilgisi.Address.ToString();
+                    }
+
+                    // Gateway
+                    var gatewayBilgisi = ozellikler.GatewayAddresses
+                        .FirstOrDefault(g =>
+                            g.Address.AddressFamily == AddressFamily.InterNetwork);
+
+                    if (gatewayBilgisi != null)
+                    {
+                        gateway = gatewayBilgisi.Address.ToString();
+                    }
+
+                    // DNS
+                    var dnsBilgisi = ozellikler.DnsAddresses
+                        .FirstOrDefault(d =>
+                            d.AddressFamily == AddressFamily.InterNetwork);
+
+                    if (dnsBilgisi != null)
+                    {
+                        dns = dnsBilgisi.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Ağ bilgileri alınamadı:\n" + ex.Message,
+                    "Hata",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            label8.Text = baglanti;
+            label7.Text = ipv4;
+            label6.Text = gateway;
+            label5.Text = dns;
+        }
+
+
+
     }
 }
