@@ -17,12 +17,16 @@ using System.Net.Sockets;
 using System.Net.Http;
 using System.Diagnostics;
 using System.IO;
+using System.Media;
 
 namespace NetScope
 {
-    public partial class Form1 : Form
+    public partial class NetScope : Form
     {
-        public Form1()
+        private SoundPlayer hoverSesi;
+        private SoundPlayer clickSesi;
+
+        public NetScope()
         {
             InitializeComponent();
             
@@ -38,6 +42,7 @@ namespace NetScope
             ButonYuvarla(btnBilgi, 15);
             ButonYuvarla(btnAyarlar, 15);
             ButonYuvarla(btnAgYenile, 15);
+            ButonYuvarla(btnHesapla, 15);
 
             btnAğim.MouseEnter += Buton_MouseEnter;
             btnAğim.MouseLeave += Buton_MouseLeave;
@@ -62,6 +67,9 @@ namespace NetScope
 
             btnAgYenile.MouseEnter += Buton_MouseEnter;
             btnAgYenile.MouseLeave += Buton_MouseLeave;
+
+            btnHesapla.MouseEnter += Buton_MouseEnter;
+            btnHesapla.MouseLeave += Buton_MouseLeave;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -81,16 +89,18 @@ namespace NetScope
 
         private void button1_Click(object sender, EventArgs e)
         {
+            clickSesi.Play();
             SayfaGöster(PanelSubnetHesaplayıcı);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            clickSesi.Play();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            clickSesi.Play();
             SayfaGöster(Ayarlar);
         }
 
@@ -101,11 +111,19 @@ namespace NetScope
 
         private void button3_Click(object sender, EventArgs e)
         {
+            clickSesi.Play();
             SayfaGöster(Bilgi);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            hoverSesi = new SoundPlayer(Properties.Resources.Hover_sesi);
+            clickSesi = new SoundPlayer(Properties.Resources.Tıklama_sesi);
+
+            hoverSesi.Load();
+            clickSesi.Load();
+
             comboBox1.Items.Clear();
 
             comboBox1.Items.Add("Türkçe");
@@ -176,7 +194,8 @@ namespace NetScope
         string bağlıMesaj;
         private async void button2_Click_1(object sender, EventArgs e)
         {
-            if(testDevamEdiyor)
+            clickSesi.Play();
+            if (testDevamEdiyor)
             {
                 return;
             }
@@ -266,11 +285,13 @@ namespace NetScope
 
         private void btnAgYenile_Click(object sender, EventArgs e)
         {
+            clickSesi.Play();
             AgBilgileriniGetir();
         }
 
         private void btnHizTestiMenu_Click(object sender, EventArgs e)
         {
+            clickSesi.Play();
             SayfaGöster(panelHizTesti);
         }
 
@@ -519,6 +540,77 @@ namespace NetScope
         private void lblBaslik_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbnIPAdresi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PanelSubnetHesaplayıcı_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void m(object sender, EventArgs e)
+        {
+            clickSesi.Play();
+            SayfaGöster(panelAgim);
+        }
+
+        private void btnAğim_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnIpHesaplayici_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnPing_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnHizTestiMenu_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnBilgi_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnAyarlar_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnHesapla_Click(object sender, EventArgs e)
+        {
+            clickSesi.Play();
+        }
+
+        private void btnHesapla_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnHizTestiBaslat_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
+        }
+
+        private void btnAgYenile_MouseHover(object sender, EventArgs e)
+        {
+            hoverSesi.Play();
         }
 
         private async Task<double> IndirmeTestiYapAsync()

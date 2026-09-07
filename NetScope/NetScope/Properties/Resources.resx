@@ -123,6 +123,10 @@
   <data name="Connection" xml:space="preserve">
     <value>Bağlantı</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Hover_sesi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hover_sesi.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Bilgi</value>
   </data>
@@ -135,13 +139,13 @@
   <data name="Language" xml:space="preserve">
     <value>Dil</value>
   </data>
-  <data name="MyNetwork" xml:space="preserve">
-    <value>Ağım</value>
-  </data>
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
   </data>
   <data name="SpeedTest" xml:space="preserve">
     <value>Hız Testi</value>
+  </data>
+  <data name="Tıklama_sesi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tıklama_sesi.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

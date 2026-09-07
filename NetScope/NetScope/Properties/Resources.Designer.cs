@@ -79,6 +79,15 @@ namespace NetScope.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Hover_sesi {
+            get {
+                return ResourceManager.GetStream("Hover_sesi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bilgi.
         /// </summary>
         internal static string Information {
@@ -115,15 +124,6 @@ namespace NetScope.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ağım.
-        /// </summary>
-        internal static string MyNetwork {
-            get {
-                return ResourceManager.GetString("MyNetwork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ayarlar.
         /// </summary>
         internal static string Settings {
@@ -138,6 +138,15 @@ namespace NetScope.Properties {
         internal static string SpeedTest {
             get {
                 return ResourceManager.GetString("SpeedTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Tıklama_sesi {
+            get {
+                return ResourceManager.GetStream("Tıklama_sesi", resourceCulture);
             }
         }
     }
