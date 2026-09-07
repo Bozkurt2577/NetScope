@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Net.Http;
+using System.Diagnostics;
+using System.IO;
 
 namespace NetScope
 {
@@ -23,6 +26,9 @@ namespace NetScope
         {
             InitializeComponent();
             
+            panelHizTesti.ForeColor = Color.White;
+            ComboBoxSubnet.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
             ButonYuvarla(btnHizTestiBaslat, 15);
             ButonYuvarla(btnAğim, 15);
@@ -75,7 +81,7 @@ namespace NetScope
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            SayfaGöster(PanelSubnetHesaplayıcı);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -95,7 +101,7 @@ namespace NetScope
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            SayfaGöster(Bilgi);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -161,10 +167,55 @@ namespace NetScope
         {
 
         }
+        private bool testDevamEdiyor = false;
+        string Mesaj;
+        string HataMesaji;
 
-        private void button2_Click_1(object sender, EventArgs e)
+        string pingMesajı, DownloadMesajı, UploadMesajı;
+        string Mesaj1;
+        string bağlıMesaj;
+        private async void button2_Click_1(object sender, EventArgs e)
         {
+            if(testDevamEdiyor)
+            {
+                return;
+            }
+
+            testDevamEdiyor = true;
+            string orijinalMetin = btnHizTestiBaslat.Text;
             
+
+            lblPing.Text = "Ping: -- ms";
+            lblDownload.Text = "Download: -- Mbps";
+            lblUpload.Text = "Upload: -- Mbps";
+
+            try
+            {
+                btnHizTestiBaslat.Text = pingMesajı;
+                long pingMs = await PingTestiYapAsync("8.8.8.8");
+                lblPing.Text = pingMs >= 0 ? $"Ping: {pingMs} ms" : $"Ping: {HataMesaji}";
+
+                btnHizTestiBaslat.Text = DownloadMesajı;
+                double indirmeMbps = await IndirmeTestiYapAsync();
+                lblDownload.Text = indirmeMbps >= 0 ? $"Download: {indirmeMbps:0.00} Mbps" : $"Download: {HataMesaji}";
+
+                btnHizTestiBaslat.Text = UploadMesajı;
+                double yuklemeMbps = await YuklemeTestiYapAsync();
+                lblUpload.Text = yuklemeMbps >= 0 ? $"Upload: {yuklemeMbps:0.00} Mbps" : $"Upload: {HataMesaji}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"{Mesaj1}" + ex.Message,
+                    $"{HataMesaji}",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnHizTestiBaslat.Text = orijinalMetin;
+                testDevamEdiyor = false;
+            }
         }
 
         private void Buton_MouseEnter(object sender, EventArgs e)
@@ -201,6 +252,8 @@ namespace NetScope
             panelAgim.Visible = false;
             panelHizTesti.Visible = false;
             Ayarlar.Visible = false;
+            Bilgi.Visible = false;
+            PanelSubnetHesaplayıcı.Visible = false;
 
             panel.Visible = true;
             panel.BringToFront();
@@ -235,6 +288,9 @@ namespace NetScope
             }
         }
 
+        
+
+        
         private void UygulamaDiliniUygula()
         {
             string dil = Properties.Settings.Default.Language;
@@ -249,10 +305,29 @@ namespace NetScope
                 btnHizTestiMenu.Text = "Hız Testi";
                 btnHizTestiBaslat.Text = "Hız Testini Başlat";
                 groupBox1.Text = "Hız Testi";
-                lblBaslik.Text = "İnternet Hız Testi";
+                lblHizBaslik.Text = "İnternet Hız Testi";
+                lblBaslik.Text = "Ağ Durumu"; 
                 btnAgYenile.Text = "Ağı Yenile";
-                label1.Text = "Bağlantı";
+                label1.Text = "Bağlantı:";
                 grpAgDurumu.Text = "Bağlantı Bilgileri";
+                Mesaj = "Ağ bilgileri alınamadı:\n";
+                HataMesaji = "Hata";
+                pingMesajı = "Ping ölçülüyor...";
+                DownloadMesajı = "İndirme ölçülüyor...";
+                UploadMesajı = "Yükleme ölçülüyor...";
+                Mesaj1 = "Hız testi sırasında bir hata oluştu:\n";
+                bağlıMesaj = "Bağlı değil";
+                lblBilgiBaslik.Text = "Temel Ağ Bilgisi";
+                rtbBilgi.Text =
+                    "IP Adresi: Cihazınızın ağdaki kimliğidir. Örn: 192.168.1.5\n\n" +
+                    "Alt Ağ Maskesi (Subnet Mask): Bir ağın hangi IP aralığını kapsadığını belirler. Örn: 255.255.255.0\n\n" +
+                    "Ağ Geçidi (Gateway): Yerel ağınızı internete bağlayan cihazdır (genellikle modem/router).\n\n" +
+                    "DNS: Alan adlarını (örn. google.com) IP adreslerine çeviren sistemdir.\n\n" +
+                    "Ping: Bir isteğin karşı sunucuya gidip geri dönme süresidir, milisaniye (ms) cinsinden ölçülür.\n" +
+                    " Düşük ping, daha hızlı tepki demektir.\n" +
+                    "\nDownload (İndirme) Hızı: Internetten cihazınıza veri gelme hızıdır, Mbps (megabit/saniye) cinsinden ölçülür.\n\n" +
+                    "Upload (Yükleme) Hızı: Cihazınızdan internete veri gönderme hızıdır.\n\n" +
+                    "Not: Mbps ile MB/s birbirinden farklıdır. 8 Mbps ≈ 1 MB/s (1 bayt = 8 bit).";
             }
             else
             {
@@ -264,12 +339,40 @@ namespace NetScope
                 btnHizTestiMenu.Text = "Speed Test";
                 btnHizTestiBaslat.Text = "Start Speed Test";
                 groupBox1.Text = "Speed Test";
-                lblBaslik.Text = "Internet Speed Test";
+                lblHizBaslik.Text = "Internet Speed Test";
+                lblBaslik.Text = "Network Status";
                 btnAgYenile.Text = "Refresh";
-                label1.Text = "Connection";
+                label1.Text = "Connection:";
                 grpAgDurumu.Text = "Connection Information";
+                Mesaj = "Could not retrieve network information:\n";
+                HataMesaji = "Error";
+                pingMesajı = "Measuring ping...";
+                DownloadMesajı = "Measuring download...";
+                UploadMesajı = "Measuring upload...";
+                Mesaj1 = "An error occurred during the speed test:\n";
+                bağlıMesaj = "Not connected";
+                lblBilgiBaslik.Text = "Basic Network Info";
+                rtbBilgi.Text =
+                    "IP Address: Your device's identity on the network. Ex: 192.168.1.5\n\n" +
+                    "Subnet Mask: Defines which IP range a network covers. Ex: 255.255.255.0\n\n" +
+                    "Gateway: The device that connects your local network to the internet (usually your router/modem).\n\n" +
+                    "DNS: The system that translates domain names (e.g. google.com) into IP addresses.\n\n" +
+                    "Ping: The time it takes for a request to reach a server and come back, measured in milliseconds (ms).\n" +
+                    "Lower ping means faster response.\n" +
+                    "\nDownload Speed: How fast data comes from the internet to your device," +
+                    "\nmeasured in Mbps (megabits per second).\n" +
+                    "\nUpload Speed: How fast data goes from your device to the internet.\n" +
+                    "Note: Mbps and MB/s are different. 8 Mbps ≈ 1 MB/s (1 byte = 8 bits).";
+
+
+
+
+
+
             }
         }
+
+        
 
         private void DilDegistir(string dil)
         {
@@ -285,7 +388,7 @@ namespace NetScope
 
         private void AgBilgileriniGetir()
         {
-            string baglanti = "Bağlı Değil";
+            string baglanti = bağlıMesaj;
             string ipv4 = "-";
             string gateway = "-";
             string dns = "-";
@@ -301,7 +404,6 @@ namespace NetScope
 
                 NetworkInterface aktifKart = null;
 
-                // Gateway'i olan IPv4 bağlantıyı bul
                 foreach (var kart in kartlar)
                 {
                     var ozellikler = kart.GetIPProperties();
@@ -319,7 +421,6 @@ namespace NetScope
                     }
                 }
 
-                // Gateway bulunamazsa IPv4 bağlantıyı bul
                 if (aktifKart == null)
                 {
                     aktifKart = kartlar.FirstOrDefault(k =>
@@ -333,7 +434,6 @@ namespace NetScope
 
                     baglanti = aktifKart.Name;
 
-                    // IPv4
                     var ipBilgisi = ozellikler.UnicastAddresses
                         .FirstOrDefault(a =>
                             a.Address.AddressFamily == AddressFamily.InterNetwork);
@@ -343,7 +443,6 @@ namespace NetScope
                         ipv4 = ipBilgisi.Address.ToString();
                     }
 
-                    // Gateway
                     var gatewayBilgisi = ozellikler.GatewayAddresses
                         .FirstOrDefault(g =>
                             g.Address.AddressFamily == AddressFamily.InterNetwork);
@@ -353,7 +452,6 @@ namespace NetScope
                         gateway = gatewayBilgisi.Address.ToString();
                     }
 
-                    // DNS
                     var dnsBilgisi = ozellikler.DnsAddresses
                         .FirstOrDefault(d =>
                             d.AddressFamily == AddressFamily.InterNetwork);
@@ -367,8 +465,8 @@ namespace NetScope
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Ağ bilgileri alınamadı:\n" + ex.Message,
-                    "Hata",
+                    $"{Mesaj}" + ex.Message, 
+                    $"{HataMesaji}",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -378,6 +476,152 @@ namespace NetScope
             label6.Text = gateway;
             label5.Text = dns;
         }
+
+
+
+        private static readonly HttpClient httpClient = new HttpClient();
+
+        
+
+        private async Task<long> PingTestiYapAsync(string host)
+        {
+            try
+            {
+                using (var ping = new Ping())
+                {
+                    long toplamSure = 0;
+                    int basariliSayisi = 0;
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        PingReply reply = await ping.SendPingAsync(host, 2000);
+
+                        if (reply.Status == IPStatus.Success)
+                        {
+                            toplamSure += reply.RoundtripTime;
+                            basariliSayisi++;
+                        }
+                    }
+
+                    return basariliSayisi > 0 ? toplamSure / basariliSayisi : -1;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        private void ComboBoxSubnet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void lblBaslik_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async Task<double> IndirmeTestiYapAsync()
+        {
+            try
+            {
+                const long hedefBoyutBayt = 25_000_000; 
+                string url = $"https://speed.cloudflare.com/__down?bytes={hedefBoyutBayt}";
+
+                var kronometre = Stopwatch.StartNew();
+                long okunanBayt = 0;
+
+                using (var yanit = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead))
+                {
+                    yanit.EnsureSuccessStatusCode();
+
+                    using (var akis = await yanit.Content.ReadAsStreamAsync())
+                    {
+                        byte[] tampon = new byte[81920];
+                        int okunan;
+
+                        while ((okunan = await akis.ReadAsync(tampon, 0, tampon.Length)) > 0)
+                        {
+                            okunanBayt += okunan;
+                        }
+                    }
+                }
+
+                kronometre.Stop();
+
+                double saniye = kronometre.Elapsed.TotalSeconds;
+                if (saniye <= 0 || okunanBayt == 0) return -1;
+
+                return (okunanBayt * 8.0) / saniye / 1_000_000.0; 
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        private async Task<double> YuklemeTestiYapAsync()
+        {
+            try
+            {
+                const int veriBoyutuBayt = 5_000_000; 
+                byte[] veri = new byte[veriBoyutuBayt];
+                new Random().NextBytes(veri);
+
+                string url = "https://speed.cloudflare.com/__up";
+
+                var kronometre = Stopwatch.StartNew();
+
+                using (var icerik = new ByteArrayContent(veri))
+                {
+                    icerik.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+
+                    using (var yanit = await httpClient.PostAsync(url, icerik))
+                    {
+                        yanit.EnsureSuccessStatusCode();
+                    }
+                }
+
+                kronometre.Stop();
+
+                double saniye = kronometre.Elapsed.TotalSeconds;
+                if (saniye <= 0) return -1;
+
+                return (veriBoyutuBayt * 8.0) / saniye / 1_000_000.0;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
