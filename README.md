@@ -29,14 +29,10 @@ Go to the **Releases** section to download the latest version of NetScope.
 
 ## Developer
 
-## Creator
-
 Developed independently.
 
 * GitHub: **@Bozkurt2577**
 * Instagram: **@bozkurt257725**
-
-
 
 ## License
 
