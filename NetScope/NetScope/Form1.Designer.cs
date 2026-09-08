@@ -30,6 +30,30 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetScope));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.PanelPing = new System.Windows.Forms.Panel();
+            this.rtbPingLog = new System.Windows.Forms.RichTextBox();
+            this.grpPingSonuclar = new System.Windows.Forms.GroupBox();
+            this.lblPingKayipYuzde = new System.Windows.Forms.Label();
+            this.lblPingKayipYuzdeBaslik = new System.Windows.Forms.Label();
+            this.lblPingKayip = new System.Windows.Forms.Label();
+            this.lblPingKayipBaslik = new System.Windows.Forms.Label();
+            this.lblPingAlinan = new System.Windows.Forms.Label();
+            this.lblPingAlinanBaslik = new System.Windows.Forms.Label();
+            this.lblPingGonderilen = new System.Windows.Forms.Label();
+            this.lblPingGonderilenBaslik = new System.Windows.Forms.Label();
+            this.lblPingTtl = new System.Windows.Forms.Label();
+            this.lblPingTtlBaslik = new System.Windows.Forms.Label();
+            this.lblPingGecikme = new System.Windows.Forms.Label();
+            this.lblPingGecikmeBaslik = new System.Windows.Forms.Label();
+            this.lblPingDurum = new System.Windows.Forms.Label();
+            this.lblPingDurumBaslik = new System.Windows.Forms.Label();
+            this.lblPingHedefAdres = new System.Windows.Forms.Label();
+            this.lblPingHedefAdresBaslik = new System.Windows.Forms.Label();
+            this.btnPingDurdur = new System.Windows.Forms.Button();
+            this.btnPingBaslat = new System.Windows.Forms.Button();
+            this.txtPingHedef = new System.Windows.Forms.TextBox();
+            this.lblPingHedefBaslik = new System.Windows.Forms.Label();
+            this.lblPingBaslik = new System.Windows.Forms.Label();
             this.PanelSubnetHesaplayıcı = new System.Windows.Forms.Panel();
             this.btnHesapla = new System.Windows.Forms.Button();
             this.GroupSonuçlar = new System.Windows.Forms.GroupBox();
@@ -49,7 +73,6 @@
             this.lbnIPAdresi = new System.Windows.Forms.Label();
             this.ComboBoxSubnet = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.PanelPing = new System.Windows.Forms.Panel();
             this.panelAgim = new System.Windows.Forms.Panel();
             this.grpAgDurumu = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,7 +93,6 @@
             this.lblUpload = new System.Windows.Forms.Label();
             this.lblDownload = new System.Windows.Forms.Label();
             this.Bilgi = new System.Windows.Forms.Panel();
-            this.rtbBilgi = new System.Windows.Forms.Label();
             this.lblBilgiBaslik = new System.Windows.Forms.Label();
             this.Ayarlar = new System.Windows.Forms.Panel();
             this.lblLanguage = new System.Windows.Forms.Label();
@@ -83,7 +105,11 @@
             this.btnIpHesaplayici = new System.Windows.Forms.Button();
             this.btnAğim = new System.Windows.Forms.Button();
             this.lblLogo = new System.Windows.Forms.Label();
+            this.rtbBilgi = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelContent.SuspendLayout();
+            this.PanelPing.SuspendLayout();
+            this.grpPingSonuclar.SuspendLayout();
             this.PanelSubnetHesaplayıcı.SuspendLayout();
             this.GroupSonuçlar.SuspendLayout();
             this.panelAgim.SuspendLayout();
@@ -93,16 +119,17 @@
             this.Bilgi.SuspendLayout();
             this.Ayarlar.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
-            this.panelContent.Controls.Add(this.PanelPing);
-            this.panelContent.Controls.Add(this.PanelSubnetHesaplayıcı);
             this.panelContent.Controls.Add(this.panelAgim);
-            this.panelContent.Controls.Add(this.panelHizTesti);
             this.panelContent.Controls.Add(this.Bilgi);
+            this.panelContent.Controls.Add(this.PanelSubnetHesaplayıcı);
+            this.panelContent.Controls.Add(this.PanelPing);
+            this.panelContent.Controls.Add(this.panelHizTesti);
             this.panelContent.Controls.Add(this.Ayarlar);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(200, 0);
@@ -110,6 +137,274 @@
             this.panelContent.Size = new System.Drawing.Size(600, 450);
             this.panelContent.TabIndex = 3;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // PanelPing
+            // 
+            this.PanelPing.Controls.Add(this.rtbPingLog);
+            this.PanelPing.Controls.Add(this.grpPingSonuclar);
+            this.PanelPing.Controls.Add(this.btnPingDurdur);
+            this.PanelPing.Controls.Add(this.btnPingBaslat);
+            this.PanelPing.Controls.Add(this.txtPingHedef);
+            this.PanelPing.Controls.Add(this.lblPingHedefBaslik);
+            this.PanelPing.Controls.Add(this.lblPingBaslik);
+            this.PanelPing.Location = new System.Drawing.Point(0, 0);
+            this.PanelPing.Name = "PanelPing";
+            this.PanelPing.Size = new System.Drawing.Size(600, 500);
+            this.PanelPing.TabIndex = 6;
+            // 
+            // rtbPingLog
+            // 
+            this.rtbPingLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(14)))), ((int)(((byte)(20)))));
+            this.rtbPingLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbPingLog.Font = new System.Drawing.Font("Consolas", 9.75F);
+            this.rtbPingLog.ForeColor = System.Drawing.Color.White;
+            this.rtbPingLog.Location = new System.Drawing.Point(20, 300);
+            this.rtbPingLog.Name = "rtbPingLog";
+            this.rtbPingLog.ReadOnly = true;
+            this.rtbPingLog.Size = new System.Drawing.Size(560, 180);
+            this.rtbPingLog.TabIndex = 6;
+            this.rtbPingLog.Text = "";
+            this.rtbPingLog.TextChanged += new System.EventHandler(this.rtbPingLog_TextChanged);
+            // 
+            // grpPingSonuclar
+            // 
+            this.grpPingSonuclar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(34)))), ((int)(((byte)(45)))));
+            this.grpPingSonuclar.Controls.Add(this.lblPingKayipYuzde);
+            this.grpPingSonuclar.Controls.Add(this.lblPingKayipYuzdeBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingKayip);
+            this.grpPingSonuclar.Controls.Add(this.lblPingKayipBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingAlinan);
+            this.grpPingSonuclar.Controls.Add(this.lblPingAlinanBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingGonderilen);
+            this.grpPingSonuclar.Controls.Add(this.lblPingGonderilenBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingTtl);
+            this.grpPingSonuclar.Controls.Add(this.lblPingTtlBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingGecikme);
+            this.grpPingSonuclar.Controls.Add(this.lblPingGecikmeBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingDurum);
+            this.grpPingSonuclar.Controls.Add(this.lblPingDurumBaslik);
+            this.grpPingSonuclar.Controls.Add(this.lblPingHedefAdres);
+            this.grpPingSonuclar.Controls.Add(this.lblPingHedefAdresBaslik);
+            this.grpPingSonuclar.ForeColor = System.Drawing.Color.White;
+            this.grpPingSonuclar.Location = new System.Drawing.Point(20, 135);
+            this.grpPingSonuclar.Name = "grpPingSonuclar";
+            this.grpPingSonuclar.Size = new System.Drawing.Size(560, 150);
+            this.grpPingSonuclar.TabIndex = 5;
+            this.grpPingSonuclar.TabStop = false;
+            this.grpPingSonuclar.Text = "Sonuçlar";
+            // 
+            // lblPingKayipYuzde
+            // 
+            this.lblPingKayipYuzde.AutoSize = true;
+            this.lblPingKayipYuzde.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingKayipYuzde.Location = new System.Drawing.Point(430, 110);
+            this.lblPingKayipYuzde.Name = "lblPingKayipYuzde";
+            this.lblPingKayipYuzde.Size = new System.Drawing.Size(11, 13);
+            this.lblPingKayipYuzde.TabIndex = 15;
+            this.lblPingKayipYuzde.Text = "-";
+            // 
+            // lblPingKayipYuzdeBaslik
+            // 
+            this.lblPingKayipYuzdeBaslik.AutoSize = true;
+            this.lblPingKayipYuzdeBaslik.Location = new System.Drawing.Point(300, 110);
+            this.lblPingKayipYuzdeBaslik.Name = "lblPingKayipYuzdeBaslik";
+            this.lblPingKayipYuzdeBaslik.Size = new System.Drawing.Size(64, 13);
+            this.lblPingKayipYuzdeBaslik.TabIndex = 14;
+            this.lblPingKayipYuzdeBaslik.Text = "Kayıp Oranı:";
+            // 
+            // lblPingKayip
+            // 
+            this.lblPingKayip.AutoSize = true;
+            this.lblPingKayip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingKayip.Location = new System.Drawing.Point(150, 110);
+            this.lblPingKayip.Name = "lblPingKayip";
+            this.lblPingKayip.Size = new System.Drawing.Size(11, 13);
+            this.lblPingKayip.TabIndex = 13;
+            this.lblPingKayip.Text = "-";
+            // 
+            // lblPingKayipBaslik
+            // 
+            this.lblPingKayipBaslik.AutoSize = true;
+            this.lblPingKayipBaslik.Location = new System.Drawing.Point(15, 110);
+            this.lblPingKayipBaslik.Name = "lblPingKayipBaslik";
+            this.lblPingKayipBaslik.Size = new System.Drawing.Size(36, 13);
+            this.lblPingKayipBaslik.TabIndex = 12;
+            this.lblPingKayipBaslik.Text = "Kayıp:";
+            // 
+            // lblPingAlinan
+            // 
+            this.lblPingAlinan.AutoSize = true;
+            this.lblPingAlinan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingAlinan.Location = new System.Drawing.Point(430, 80);
+            this.lblPingAlinan.Name = "lblPingAlinan";
+            this.lblPingAlinan.Size = new System.Drawing.Size(11, 13);
+            this.lblPingAlinan.TabIndex = 11;
+            this.lblPingAlinan.Text = "-";
+            // 
+            // lblPingAlinanBaslik
+            // 
+            this.lblPingAlinanBaslik.AutoSize = true;
+            this.lblPingAlinanBaslik.Location = new System.Drawing.Point(300, 80);
+            this.lblPingAlinanBaslik.Name = "lblPingAlinanBaslik";
+            this.lblPingAlinanBaslik.Size = new System.Drawing.Size(39, 13);
+            this.lblPingAlinanBaslik.TabIndex = 10;
+            this.lblPingAlinanBaslik.Text = "Alınan:";
+            // 
+            // lblPingGonderilen
+            // 
+            this.lblPingGonderilen.AutoSize = true;
+            this.lblPingGonderilen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingGonderilen.Location = new System.Drawing.Point(150, 80);
+            this.lblPingGonderilen.Name = "lblPingGonderilen";
+            this.lblPingGonderilen.Size = new System.Drawing.Size(11, 13);
+            this.lblPingGonderilen.TabIndex = 9;
+            this.lblPingGonderilen.Text = "-";
+            // 
+            // lblPingGonderilenBaslik
+            // 
+            this.lblPingGonderilenBaslik.AutoSize = true;
+            this.lblPingGonderilenBaslik.Location = new System.Drawing.Point(15, 80);
+            this.lblPingGonderilenBaslik.Name = "lblPingGonderilenBaslik";
+            this.lblPingGonderilenBaslik.Size = new System.Drawing.Size(61, 13);
+            this.lblPingGonderilenBaslik.TabIndex = 8;
+            this.lblPingGonderilenBaslik.Text = "Gönderilen:";
+            // 
+            // lblPingTtl
+            // 
+            this.lblPingTtl.AutoSize = true;
+            this.lblPingTtl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingTtl.Location = new System.Drawing.Point(430, 50);
+            this.lblPingTtl.Name = "lblPingTtl";
+            this.lblPingTtl.Size = new System.Drawing.Size(11, 13);
+            this.lblPingTtl.TabIndex = 7;
+            this.lblPingTtl.Text = "-";
+            // 
+            // lblPingTtlBaslik
+            // 
+            this.lblPingTtlBaslik.AutoSize = true;
+            this.lblPingTtlBaslik.Location = new System.Drawing.Point(300, 50);
+            this.lblPingTtlBaslik.Name = "lblPingTtlBaslik";
+            this.lblPingTtlBaslik.Size = new System.Drawing.Size(30, 13);
+            this.lblPingTtlBaslik.TabIndex = 6;
+            this.lblPingTtlBaslik.Text = "TTL:";
+            // 
+            // lblPingGecikme
+            // 
+            this.lblPingGecikme.AutoSize = true;
+            this.lblPingGecikme.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingGecikme.Location = new System.Drawing.Point(430, 25);
+            this.lblPingGecikme.Name = "lblPingGecikme";
+            this.lblPingGecikme.Size = new System.Drawing.Size(11, 13);
+            this.lblPingGecikme.TabIndex = 5;
+            this.lblPingGecikme.Text = "-";
+            // 
+            // lblPingGecikmeBaslik
+            // 
+            this.lblPingGecikmeBaslik.AutoSize = true;
+            this.lblPingGecikmeBaslik.Location = new System.Drawing.Point(300, 25);
+            this.lblPingGecikmeBaslik.Name = "lblPingGecikmeBaslik";
+            this.lblPingGecikmeBaslik.Size = new System.Drawing.Size(76, 13);
+            this.lblPingGecikmeBaslik.TabIndex = 4;
+            this.lblPingGecikmeBaslik.Text = "Gecikme (ort.):";
+            // 
+            // lblPingDurum
+            // 
+            this.lblPingDurum.AutoSize = true;
+            this.lblPingDurum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingDurum.Location = new System.Drawing.Point(150, 50);
+            this.lblPingDurum.Name = "lblPingDurum";
+            this.lblPingDurum.Size = new System.Drawing.Size(11, 13);
+            this.lblPingDurum.TabIndex = 3;
+            this.lblPingDurum.Text = "-";
+            // 
+            // lblPingDurumBaslik
+            // 
+            this.lblPingDurumBaslik.AutoSize = true;
+            this.lblPingDurumBaslik.Location = new System.Drawing.Point(15, 50);
+            this.lblPingDurumBaslik.Name = "lblPingDurumBaslik";
+            this.lblPingDurumBaslik.Size = new System.Drawing.Size(41, 13);
+            this.lblPingDurumBaslik.TabIndex = 2;
+            this.lblPingDurumBaslik.Text = "Durum:";
+            // 
+            // lblPingHedefAdres
+            // 
+            this.lblPingHedefAdres.AutoSize = true;
+            this.lblPingHedefAdres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingHedefAdres.Location = new System.Drawing.Point(150, 25);
+            this.lblPingHedefAdres.Name = "lblPingHedefAdres";
+            this.lblPingHedefAdres.Size = new System.Drawing.Size(11, 13);
+            this.lblPingHedefAdres.TabIndex = 1;
+            this.lblPingHedefAdres.Text = "-";
+            // 
+            // lblPingHedefAdresBaslik
+            // 
+            this.lblPingHedefAdresBaslik.AutoSize = true;
+            this.lblPingHedefAdresBaslik.Location = new System.Drawing.Point(15, 25);
+            this.lblPingHedefAdresBaslik.Name = "lblPingHedefAdresBaslik";
+            this.lblPingHedefAdresBaslik.Size = new System.Drawing.Size(69, 13);
+            this.lblPingHedefAdresBaslik.TabIndex = 0;
+            this.lblPingHedefAdresBaslik.Text = "Hedef Adres:";
+            // 
+            // btnPingDurdur
+            // 
+            this.btnPingDurdur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnPingDurdur.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPingDurdur.FlatAppearance.BorderSize = 0;
+            this.btnPingDurdur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPingDurdur.ForeColor = System.Drawing.Color.White;
+            this.btnPingDurdur.Location = new System.Drawing.Point(465, 88);
+            this.btnPingDurdur.Name = "btnPingDurdur";
+            this.btnPingDurdur.Size = new System.Drawing.Size(100, 26);
+            this.btnPingDurdur.TabIndex = 4;
+            this.btnPingDurdur.Text = "Durdur";
+            this.btnPingDurdur.UseVisualStyleBackColor = false;
+            this.btnPingDurdur.Click += new System.EventHandler(this.btnPingDurdur_Click);
+            // 
+            // btnPingBaslat
+            // 
+            this.btnPingBaslat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
+            this.btnPingBaslat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPingBaslat.FlatAppearance.BorderSize = 0;
+            this.btnPingBaslat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPingBaslat.ForeColor = System.Drawing.Color.White;
+            this.btnPingBaslat.Location = new System.Drawing.Point(335, 88);
+            this.btnPingBaslat.Name = "btnPingBaslat";
+            this.btnPingBaslat.Size = new System.Drawing.Size(120, 26);
+            this.btnPingBaslat.TabIndex = 3;
+            this.btnPingBaslat.Text = "Ping Başlat";
+            this.btnPingBaslat.UseVisualStyleBackColor = false;
+            this.btnPingBaslat.Click += new System.EventHandler(this.btnPingBaslat_Click);
+            // 
+            // txtPingHedef
+            // 
+            this.txtPingHedef.Location = new System.Drawing.Point(20, 90);
+            this.txtPingHedef.Name = "txtPingHedef";
+            this.txtPingHedef.Size = new System.Drawing.Size(300, 20);
+            this.txtPingHedef.TabIndex = 2;
+            this.txtPingHedef.Text = "8.8.8.8";
+            // 
+            // lblPingHedefBaslik
+            // 
+            this.lblPingHedefBaslik.AutoSize = true;
+            this.lblPingHedefBaslik.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingHedefBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblPingHedefBaslik.Location = new System.Drawing.Point(20, 68);
+            this.lblPingHedefBaslik.Name = "lblPingHedefBaslik";
+            this.lblPingHedefBaslik.Size = new System.Drawing.Size(156, 16);
+            this.lblPingHedefBaslik.TabIndex = 1;
+            this.lblPingHedefBaslik.Text = "Hedef (IP veya Alan Adı):";
+            this.lblPingHedefBaslik.Click += new System.EventHandler(this.lblPingHedefBaslik_Click);
+            // 
+            // lblPingBaslik
+            // 
+            this.lblPingBaslik.AutoSize = true;
+            this.lblPingBaslik.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblPingBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblPingBaslik.Location = new System.Drawing.Point(20, 15);
+            this.lblPingBaslik.Name = "lblPingBaslik";
+            this.lblPingBaslik.Size = new System.Drawing.Size(118, 26);
+            this.lblPingBaslik.TabIndex = 0;
+            this.lblPingBaslik.Text = "Ping Testi";
             // 
             // PanelSubnetHesaplayıcı
             // 
@@ -201,6 +496,7 @@
             this.lblHostSayisiBaslik.Size = new System.Drawing.Size(62, 13);
             this.lblHostSayisiBaslik.TabIndex = 8;
             this.lblHostSayisiBaslik.Text = "Host Sayısı:";
+            this.lblHostSayisiBaslik.Click += new System.EventHandler(this.lblHostSayisiBaslik_Click);
             // 
             // lblSonIp
             // 
@@ -323,13 +619,6 @@
             this.textBox1.Size = new System.Drawing.Size(121, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // PanelPing
-            // 
-            this.PanelPing.Location = new System.Drawing.Point(0, 0);
-            this.PanelPing.Name = "PanelPing";
-            this.PanelPing.Size = new System.Drawing.Size(600, 500);
-            this.PanelPing.TabIndex = 6;
             // 
             // panelAgim
             // 
@@ -553,23 +842,12 @@
             // 
             // Bilgi
             // 
-            this.Bilgi.Controls.Add(this.rtbBilgi);
+            this.Bilgi.Controls.Add(this.panel2);
             this.Bilgi.Controls.Add(this.lblBilgiBaslik);
             this.Bilgi.Location = new System.Drawing.Point(0, 0);
             this.Bilgi.Name = "Bilgi";
             this.Bilgi.Size = new System.Drawing.Size(600, 500);
             this.Bilgi.TabIndex = 7;
-            // 
-            // rtbBilgi
-            // 
-            this.rtbBilgi.AutoSize = true;
-            this.rtbBilgi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbBilgi.ForeColor = System.Drawing.Color.White;
-            this.rtbBilgi.Location = new System.Drawing.Point(13, 88);
-            this.rtbBilgi.Name = "rtbBilgi";
-            this.rtbBilgi.Size = new System.Drawing.Size(41, 15);
-            this.rtbBilgi.TabIndex = 1;
-            this.rtbBilgi.Text = "label9";
             // 
             // lblBilgiBaslik
             // 
@@ -724,6 +1002,28 @@
             this.lblLogo.Text = "NetScope";
             this.lblLogo.Click += new System.EventHandler(this.lblLogo_Click);
             // 
+            // rtbBilgi
+            // 
+            this.rtbBilgi.AutoSize = true;
+            this.rtbBilgi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbBilgi.ForeColor = System.Drawing.Color.White;
+            this.rtbBilgi.Location = new System.Drawing.Point(21, 16);
+            this.rtbBilgi.Name = "rtbBilgi";
+            this.rtbBilgi.Size = new System.Drawing.Size(34, 15);
+            this.rtbBilgi.TabIndex = 1;
+            this.rtbBilgi.Text = "label";
+            this.rtbBilgi.Click += new System.EventHandler(this.rtbBilgi_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.panel2.Controls.Add(this.rtbBilgi);
+            this.panel2.Location = new System.Drawing.Point(31, 83);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(543, 324);
+            this.panel2.TabIndex = 3;
+            // 
             // NetScope
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,6 +1041,10 @@
             this.Text = "NetScope";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelContent.ResumeLayout(false);
+            this.PanelPing.ResumeLayout(false);
+            this.PanelPing.PerformLayout();
+            this.grpPingSonuclar.ResumeLayout(false);
+            this.grpPingSonuclar.PerformLayout();
             this.PanelSubnetHesaplayıcı.ResumeLayout(false);
             this.PanelSubnetHesaplayıcı.PerformLayout();
             this.GroupSonuçlar.ResumeLayout(false);
@@ -759,6 +1063,8 @@
             this.Ayarlar.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -797,7 +1103,6 @@
         private System.Windows.Forms.Button btnAğim;
         private System.Windows.Forms.Label lblLogo;
         private System.Windows.Forms.Panel Bilgi;
-        private System.Windows.Forms.Label rtbBilgi;
         private System.Windows.Forms.Label lblBilgiBaslik;
         private System.Windows.Forms.Panel PanelSubnetHesaplayıcı;
         private System.Windows.Forms.ComboBox ComboBoxSubnet;
@@ -818,7 +1123,32 @@
         private System.Windows.Forms.Label lblHostSayisi;
         private System.Windows.Forms.Label lblCidrBaslik;
         private System.Windows.Forms.Label lblCidr;
+        private System.Windows.Forms.Label lblPingBaslik;
+        private System.Windows.Forms.Label lblPingHedefBaslik;
+        private System.Windows.Forms.TextBox txtPingHedef;
+        private System.Windows.Forms.Button btnPingBaslat;
+        private System.Windows.Forms.Button btnPingDurdur;
+        private System.Windows.Forms.GroupBox grpPingSonuclar;
+        private System.Windows.Forms.Label lblPingHedefAdresBaslik;
+        private System.Windows.Forms.Label lblPingHedefAdres;
+        private System.Windows.Forms.Label lblPingDurumBaslik;
+        private System.Windows.Forms.Label lblPingDurum;
+        private System.Windows.Forms.Label lblPingGecikmeBaslik;
+        private System.Windows.Forms.Label lblPingGecikme;
+        private System.Windows.Forms.Label lblPingTtlBaslik;
+        private System.Windows.Forms.Label lblPingTtl;
+        private System.Windows.Forms.Label lblPingGonderilenBaslik;
+        private System.Windows.Forms.Label lblPingGonderilen;
+        private System.Windows.Forms.Label lblPingAlinanBaslik;
+        private System.Windows.Forms.Label lblPingAlinan;
+        private System.Windows.Forms.Label lblPingKayipBaslik;
+        private System.Windows.Forms.Label lblPingKayip;
+        private System.Windows.Forms.Label lblPingKayipYuzdeBaslik;
+        private System.Windows.Forms.Label lblPingKayipYuzde;
+        private System.Windows.Forms.RichTextBox rtbPingLog;
         private System.Windows.Forms.Panel PanelPing;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label rtbBilgi;
     }
 }
 

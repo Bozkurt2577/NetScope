@@ -204,12 +204,33 @@ namespace NetScope
 
         }
         private bool testDevamEdiyor = false;
+        private bool pingDevamEdiyor = false;
+        private CancellationTokenSource pingCts;
         string Mesaj;
         string HataMesaji;
 
         string pingMesajı, DownloadMesajı, UploadMesajı;
         string Mesaj1;
         string bağlıMesaj;
+
+        string pingHatamesaj;
+
+        string pingdurumMesaj;
+        string Yanıtmesaj, Süremesaj;
+
+        string BaşarısızMesaj;
+
+        string ÖzetMesaj;
+
+        string geçerliIPmesaj;
+
+        string subnetMaskesiMesaj;
+
+        string durdurmaMesaj;
+
+        string kullanıcıDurdurmaMesaj;
+
+        string başarılıMesaj, GönderilenMesaj, AlınanMesaj, KayıpMesaj, BeklenmeyenHataMesaj;
         private async void button2_Click_1(object sender, EventArgs e)
         {
             clickSesi.Play();
@@ -361,16 +382,38 @@ namespace NetScope
                 lbnIPAdresi.Text = "IP Adresi:";
                 lbnSubnetMaskesi.Text = "Alt Ağ Maskesi:";
                 GroupSonuçlar.Text = "Sonuçlar";
+                lblPingBaslik.Text = "Ping Testi";
+                lblPingHedefBaslik.Text = "Hedef (IP veya Alan Adı):";
+                btnPingBaslat.Text = "Ping Başlat";
+                btnPingDurdur.Text = "Durdur";
+                lblPingHedefAdresBaslik.Text = "Hedef Adres:";
+                lblPingDurumBaslik.Text = "Durum:";
+                lblPingGonderilenBaslik.Text = "Gönderilen:";
+                lblPingKayipBaslik.Text = "Kayıp:";
+                lblPingGecikmeBaslik.Text = "Gecikme(ort):";
+                lblPingAlinanBaslik.Text = "Alınan:";
+                lblPingKayipYuzdeBaslik.Text = "Kayıp Oranı:";
+                pingHatamesaj = "Lütfen bir IP adresi veya alan adı girin. Örn: 8.8.8.8 veya google.com";
+                pingdurumMesaj = "Test ediliyor...";
+                Yanıtmesaj = "Yanıt";
+                Süremesaj = "Süre";
+                BaşarısızMesaj = "Başarısız";
+                ÖzetMesaj = "\r\n--- Özet ---\r\n";
+                geçerliIPmesaj = "Geçerli bir IPv4 adresi girin. Örn: 192.168.1.25";
+                subnetMaskesiMesaj = "Lütfen bir subnet maskesi seçin.";
+                durdurmaMesaj = "Durduruldu";
+                kullanıcıDurdurmaMesaj = "\r\nKullanıcı tarafından durduruldu.\r\n";
+                başarılıMesaj = "Başarılı";
+                GönderilenMesaj = "Gönderilen:";
+                AlınanMesaj = "Alınan:";
+                KayıpMesaj = "Kayıp:";
+                BeklenmeyenHataMesaj = "\r\nBeklenmeyen hata: {ex.Message}\r\n";
+                lblHostSayisiBaslik.Text = "Host Sayısı:";
+                lblSonIpBaslik.Text = "Son Kullanılabilir IP:";
+                lblIlkIpBaslik.Text = "İlk Kullanılabilir IP:";
+                btnHesapla.Text = "Hesapla";
                 rtbBilgi.Text =
-                    "IP Adresi: Cihazınızın ağdaki kimliğidir. Örn: 192.168.1.5\n\n" +
-                    "Alt Ağ Maskesi (Subnet Mask): Bir ağın hangi IP aralığını kapsadığını belirler. Örn: 255.255.255.0\n\n" +
-                    "Ağ Geçidi (Gateway): Yerel ağınızı internete bağlayan cihazdır (genellikle modem/router).\n\n" +
-                    "DNS: Alan adlarını (örn. google.com) IP adreslerine çeviren sistemdir.\n\n" +
-                    "Ping: Bir isteğin karşı sunucuya gidip geri dönme süresidir, milisaniye (ms) cinsinden ölçülür.\n" +
-                    " Düşük ping, daha hızlı tepki demektir.\n" +
-                    "\nDownload (İndirme) Hızı: Internetten cihazınıza veri gelme hızıdır, Mbps (megabit/saniye) cinsinden ölçülür.\n\n" +
-                    "Upload (Yükleme) Hızı: Cihazınızdan internete veri gönderme hızıdır.\n\n" +
-                    "Not: Mbps ile MB/s birbirinden farklıdır. 8 Mbps ≈ 1 MB/s (1 bayt = 8 bit).";
+                    "🌐 IP Adresi\r\nAğdaki cihazları tanımlamak için kullanılan adrestir. IPv4 örneği: 192.168.1.10\r\n\r\n🖥️ Host\r\nAğa bağlı ve iletişim kurabilen cihazdır. Bilgisayar, telefon, yazıcı veya sunucu bir host olabilir.\r\n\r\n🔢 Subnet Mask\r\nIP adresindeki network ve host bölümlerini belirler. Örnek: 255.255.255.0 (/24)\r\n\r\n🏠 Network\r\nBirbirleriyle iletişim kurabilen cihazların oluşturduğu ağdır.\r\n\r\n🚪 Gateway\r\nCihazın kendi ağı dışındaki ağlara ulaşmak için kullandığı geçiş noktasıdır.\r\n\r\n📡 Ping\r\nBir hedefe ulaşılabilirliği ve ağ gecikmesini test eder.\r\n\r\n⚡ Latency\r\nVerinin ağ üzerinden gidip gelmesi için geçen süredir. Genellikle ms ile ölçülür.\r\n\r\n📦 Packet Loss\r\nGönderilen paketlerin hedefe ulaşamayan kısmıdır. Yüzde olarak gösterilir.\r\n\r\n🌍 DNS\r\nAlan adlarını IP adreslerine dönüştürür. Örneğin google.com → IP adresi.\r\n\r\n📋 DHCP\r\nCihazlara otomatik olarak IP adresi ve diğer ağ ayarlarını dağıtır.\r\n\r\n🔗 MAC Address\r\nBir ağ arayüzünü yerel ağda tanımlayan donanımsal adrestir.\r\n\r\n🔌 Port\r\nBir cihazdaki farklı ağ hizmetlerini birbirinden ayıran numaradır.\r\n\r\n🔀 Router\r\nFarklı ağlar arasında veri paketlerini yönlendirir.\r\n\r\n🔲 Switch\r\nAynı yerel ağdaki cihazları birbirine bağlar.\r\n\r\n🔒 Firewall\r\nAğ trafiğini belirlenen kurallara göre kontrol ederek güvenlik sağlar.\r\n\r\n📡 TCP / UDP\r\nTCP güvenilir veri aktarımı sağlar. UDP ise daha düşük gecikme için tercih edilebilir.\r\n\r\n🌐 IPv4 / IPv6\r\nIPv4 32 bit, IPv6 ise 128 bit adresleme kullanır.\r\n\r\n📢 Broadcast\r\nBir ağdaki birden fazla cihaza aynı anda gönderilen iletişim türüdür.\r\n\r\n🔢 CIDR\r\nAğları /24, /16, /8 gibi öneklerle ifade etme yöntemidir.\r\n\r\n⏳ TTL\r\nBir IP paketinin ağ üzerinde geçebileceği yönlendirici sayısını sınırlar.";
             }
             else
             {
@@ -397,21 +440,39 @@ namespace NetScope
                 lblBilgiBaslik.Text = "Basic Network Info";
                 lbnIPAdresi.Text = "IP Address:";
                 lbnSubnetMaskesi.Text = "Subnet Mask:";
-                GroupSonuçlar.Text = "Results"; 
+                GroupSonuçlar.Text = "Results";
+                lblPingBaslik.Text = "Ping Test";
+                lblPingHedefBaslik.Text = "Target (IP Address or Domain Name):";
+                btnPingBaslat.Text = "Start Ping";
+                btnPingDurdur.Text = "Stop";
+                lblPingHedefAdresBaslik.Text = "Target Address:";
+                lblPingDurumBaslik.Text = "Status:";
+                lblPingGonderilenBaslik.Text = "Sent:";
+                lblPingKayipBaslik.Text = "Lost:";
+                lblPingGecikmeBaslik.Text = "Average Latency:";
+                lblPingAlinanBaslik.Text = "Received:";
+                lblPingKayipYuzdeBaslik.Text = "Packet Loss Rate:";
+                pingHatamesaj = "Please enter an IP address or domain name. Example: 8.8.8.8 or google.com";
+                pingdurumMesaj = "Testing...";
+                Yanıtmesaj = "Response";
+                Süremesaj = "Time";
+                BaşarısızMesaj = "Failed";
+                ÖzetMesaj = "\r\n--- Summary ---\r\n";
+                geçerliIPmesaj = "Enter a valid IPv4 address. Example: 192.168.1.25";
+                subnetMaskesiMesaj = "Please select a subnet mask.";
+                durdurmaMesaj = "Stopped";
+                kullanıcıDurdurmaMesaj = "\r\nStopped by the user.\r\n";
+                başarılıMesaj = "Successful";
+                GönderilenMesaj = "Sent:";
+                AlınanMesaj = "Received:";
+                KayıpMesaj = "Lost:";
+                BeklenmeyenHataMesaj = "\r\nUnexpected error: {ex.Message}\r\n";
+                lblHostSayisiBaslik.Text = "Number of Hosts:";
+                lblSonIpBaslik.Text = "Last Usable IP:";
+                lblIlkIpBaslik.Text = "First Usable IP:";
+                btnHesapla.Text = "Calculate";
                 rtbBilgi.Text =
-                    "IP Address: Your device's identity on the network. Ex: 192.168.1.5\n\n" +
-                    "Subnet Mask: Defines which IP range a network covers. Ex: 255.255.255.0\n\n" +
-                    "Gateway: The device that connects your local network to the internet (usually your router/modem).\n\n" +
-                    "DNS: The system that translates domain names (e.g. google.com) into IP addresses.\n\n" +
-                    "Ping: The time it takes for a request to reach a server and come back, measured in milliseconds (ms).\n" +
-                    "Lower ping means faster response.\n" +
-                    "\nDownload Speed: How fast data comes from the internet to your device," +
-                    "\nmeasured in Mbps (megabits per second).\n" +
-                    "\nUpload Speed: How fast data goes from your device to the internet.\n" +
-                    "Note: Mbps and MB/s are different. 8 Mbps ≈ 1 MB/s (1 byte = 8 bits).";
-
-
-
+                    "IP Address\r\nIdentifies a device on a network. Example: 192.168.1.10\r\n\r\nHost\r\nA device connected to a network, such as a computer, phone, or server.\r\n\r\nSubnet Mask\r\nDetermines the network and host portions of an IP address.\r\n\r\nNetwork\r\nA group of connected devices that can communicate with each other.\r\n\r\nGateway\r\nThe device used to reach other networks, usually your router.\r\n\r\nPing\r\nTests connectivity to a target and measures network latency.\r\n\r\nLatency\r\nThe time required for data to travel to a destination and back.\r\n\r\nPacket Loss\r\nThe percentage of network packets that fail to reach their destination.\r\n\r\nDNS\r\nTranslates domain names into IP addresses.\r\n\r\nDHCP\r\nAutomatically assigns IP addresses and network settings to devices.\r\n\r\nMAC Address\r\nA hardware address used to identify a network interface.\r\n\r\nPort\r\nA number used to identify a specific network service.\r\n\r\nRouter\r\nForwards data between different networks.\r\n\r\nSwitch\r\nConnects devices within the same local network.\r\n\r\nFirewall\r\nControls network traffic according to security rules.\r\n\r\nTCP / UDP\r\nTCP provides reliable delivery. UDP focuses on lower-latency communication.\r\n\r\nIPv4 / IPv6\r\nIPv4 uses 32-bit addresses. IPv6 uses 128-bit addresses.\r\n\r\nCIDR\r\nRepresents networks using prefixes such as /24 or /16.\r\n\r\nBroadcast\r\nSends data to all devices on a local network.\r\n\r\nTTL\r\nLimits how many routers an IP packet can pass through.";
 
 
 
@@ -626,17 +687,17 @@ namespace NetScope
 
             if (!IPAddress.TryParse(ipMetni, out IPAddress ip) || ip.AddressFamily != AddressFamily.InterNetwork)
             {
-                MessageBox.Show("Geçerli bir IPv4 adresi girin. Örn: 192.168.1.25", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(geçerliIPmesaj, HataMesaji, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (ComboBoxSubnet.SelectedItem == null)
             {
-                MessageBox.Show("Lütfen bir subnet maskesi seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(subnetMaskesiMesaj, HataMesaji, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string secilen = ComboBoxSubnet.SelectedItem.ToString(); // Örn: "255.255.255.0 (/24)"
+            string secilen = ComboBoxSubnet.SelectedItem.ToString(); 
             int slashIndex = secilen.IndexOf('/');
             int parantezIndex = secilen.IndexOf(')');
             int cidr = int.Parse(secilen.Substring(slashIndex + 1, parantezIndex - slashIndex - 1));
@@ -715,6 +776,16 @@ namespace NetScope
             }
         }
 
+        private void lblHostSayisiBaslik_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rtbBilgi_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private async Task<double> YuklemeTestiYapAsync()
         {
             try
@@ -764,7 +835,154 @@ namespace NetScope
             return new IPAddress(bayt);
         }
 
+        private void lblPingHedefBaslik_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void rtbPingLog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btnPingBaslat_Click(object sender, EventArgs e)
+        {
+            clickSesi.Play();
+
+            if (pingDevamEdiyor)
+            {
+                return;
+            }
+
+            string hedef = txtPingHedef.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(hedef))
+            {
+                MessageBox.Show(pingHatamesaj, HataMesaji, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            pingDevamEdiyor = true;
+            pingCts = new CancellationTokenSource();
+
+            rtbPingLog.Clear();
+            lblPingHedefAdres.Text = hedef;
+            lblPingDurum.Text = pingdurumMesaj;
+            lblPingGecikme.Text = "--";
+            lblPingTtl.Text = "--";
+            lblPingGonderilen.Text = "0";
+            lblPingAlinan.Text = "0";
+            lblPingKayip.Text = "0";
+            lblPingKayipYuzde.Text = "%0";
+
+            const int denemeSayisi = 4;
+            var sureler = new List<long>();
+            int gonderilen = 0;
+            int alinan = 0;
+            int basarisiz = 0;
+            int sonTtl = -1;
+            bool durduruldu = false;
+
+            try
+            {
+                using (var ping = new Ping())
+                {
+                    for (int i = 1; i <= denemeSayisi; i++)
+                    {
+                        if (pingCts.Token.IsCancellationRequested)
+                        {
+                            durduruldu = true;
+                            break;
+                        }
+
+                        gonderilen++;
+
+                        try
+                        {
+                            PingReply reply = await ping.SendPingAsync(hedef, 2000);
+
+                            if (reply.Status == IPStatus.Success)
+                            {
+                                alinan++;
+                                sureler.Add(reply.RoundtripTime);
+                                sonTtl = reply.Options?.Ttl ?? -1;
+
+                                rtbPingLog.AppendText($"{Yanıtmesaj} #{i}: {reply.Address}  {Süremesaj}={reply.RoundtripTime}ms  TTL={sonTtl}\r\n");
+                            }
+                            else
+                            {
+                                basarisiz++;
+                                rtbPingLog.AppendText($"{Yanıtmesaj} #{i}: {BaşarısızMesaj} ({reply.Status})\r\n");
+                            }
+                        }
+                        catch (PingException pex)
+                        {
+                            basarisiz++;
+                            string detay = pex.InnerException?.Message ?? pex.Message;
+                            rtbPingLog.AppendText($"{Yanıtmesaj} #{i}: {HataMesaji} ({detay})\r\n");
+                        }
+
+                        lblPingGonderilen.Text = gonderilen.ToString();
+                        lblPingAlinan.Text = alinan.ToString();
+                        lblPingKayip.Text = basarisiz.ToString();
+                        lblPingKayipYuzde.Text = $"%{(gonderilen > 0 ? (basarisiz * 100 / gonderilen) : 0)}";
+
+                        if (i < denemeSayisi)
+                        {
+                            try
+                            {
+                                await Task.Delay(500, pingCts.Token);
+                            }
+                            catch (TaskCanceledException)
+                            {
+                                durduruldu = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (durduruldu)
+                {
+                    lblPingDurum.Text = durdurmaMesaj;
+                    rtbPingLog.AppendText(kullanıcıDurdurmaMesaj);
+                }
+                else if (alinan > 0)
+                {
+                    lblPingDurum.Text = başarılıMesaj;
+                }
+                else
+                {
+                    lblPingDurum.Text = BaşarısızMesaj;
+                }
+
+                if (alinan > 0)
+                {
+                    lblPingGecikme.Text = $"{(long)sureler.Average()} ms";
+                    lblPingTtl.Text = sonTtl >= 0 ? sonTtl.ToString() : "--";
+                }
+
+                rtbPingLog.AppendText(ÖzetMesaj);
+                rtbPingLog.AppendText($"{GönderilenMesaj} {gonderilen}, {AlınanMesaj} {alinan}, {KayıpMesaj} {basarisiz} (%{(gonderilen > 0 ? basarisiz * 100 / gonderilen : 0)})\r\n");
+            }
+            catch (Exception ex)
+            {
+                lblPingDurum.Text = HataMesaji;
+                rtbPingLog.AppendText(BeklenmeyenHataMesaj.Replace("{ex.Message}", ex.Message));
+            }
+            finally
+            {
+                pingDevamEdiyor = false;
+                pingCts?.Dispose();
+                pingCts = null;
+            }
+        }
+
+        private void btnPingDurdur_Click(object sender, EventArgs e)
+        {
+            clickSesi.Play();
+            pingCts?.Cancel();
+        }
 
 
 
