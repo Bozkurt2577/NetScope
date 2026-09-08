@@ -96,6 +96,7 @@ namespace NetScope
         private void button2_Click(object sender, EventArgs e)
         {
             clickSesi.Play();
+            SayfaGöster(PanelPing);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -273,6 +274,7 @@ namespace NetScope
             Ayarlar.Visible = false;
             Bilgi.Visible = false;
             PanelSubnetHesaplayıcı.Visible = false;
+            PanelPing.Visible = false;
 
             panel.Visible = true;
             panel.BringToFront();
@@ -339,6 +341,9 @@ namespace NetScope
                 Mesaj1 = "Hız testi sırasında bir hata oluştu:\n";
                 bağlıMesaj = "Bağlı değil";
                 lblBilgiBaslik.Text = "Temel Ağ Bilgisi";
+                lbnIPAdresi.Text = "IP Adresi:";
+                lbnSubnetMaskesi.Text = "Alt Ağ Maskesi:";
+                GroupSonuçlar.Text = "Sonuçlar";
                 rtbBilgi.Text =
                     "IP Adresi: Cihazınızın ağdaki kimliğidir. Örn: 192.168.1.5\n\n" +
                     "Alt Ağ Maskesi (Subnet Mask): Bir ağın hangi IP aralığını kapsadığını belirler. Örn: 255.255.255.0\n\n" +
@@ -373,6 +378,9 @@ namespace NetScope
                 Mesaj1 = "An error occurred during the speed test:\n";
                 bağlıMesaj = "Not connected";
                 lblBilgiBaslik.Text = "Basic Network Info";
+                lbnIPAdresi.Text = "IP Address:";
+                lbnSubnetMaskesi.Text = "Subnet Mask:";
+                GroupSonuçlar.Text = "Results"; 
                 rtbBilgi.Text =
                     "IP Address: Your device's identity on the network. Ex: 192.168.1.5\n\n" +
                     "Subnet Mask: Defines which IP range a network covers. Ex: 255.255.255.0\n\n" +
