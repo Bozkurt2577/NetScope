@@ -144,6 +144,23 @@ namespace NetScope
             UygulamaDiliniUygula();
             AgBilgileriniGetir();
 
+            ComboBoxSubnet.Items.Clear();
+            ComboBoxSubnet.Items.AddRange(new string[]
+            {
+    "255.0.0.0 (/8)",
+    "255.255.0.0 (/16)",
+    "255.255.255.0 (/24)",
+    "255.255.255.128 (/25)",
+    "255.255.255.192 (/26)",
+    "255.255.255.224 (/27)",
+    "255.255.255.240 (/28)",
+    "255.255.255.248 (/29)",
+    "255.255.255.252 (/30)",
+    "255.255.255.254 (/31)",
+    "255.255.255.255 (/32)"
+            });
+            ComboBoxSubnet.SelectedIndex = 2; // Varsayılan: 255.255.255.0 (/24)
+
         }
 
 
@@ -604,6 +621,44 @@ namespace NetScope
         private void btnHesapla_Click(object sender, EventArgs e)
         {
             clickSesi.Play();
+
+            string ipMetni = textBox1.Text.Trim();
+
+            if (!IPAddress.TryParse(ipMetni, out IPAddress ip) || ip.AddressFamily != AddressFamily.InterNetwork)
+            {
+                MessageBox.Show("Geçerli bir IPv4 adresi girin. Örn: 192.168.1.25", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (ComboBoxSubnet.SelectedItem == null)
+            {
+                MessageBox.Show("Lütfen bir subnet maskesi seçin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string secilen = ComboBoxSubnet.SelectedItem.ToString(); // Örn: "255.255.255.0 (/24)"
+            int slashIndex = secilen.IndexOf('/');
+            int parantezIndex = secilen.IndexOf(')');
+            int cidr = int.Parse(secilen.Substring(slashIndex + 1, parantezIndex - slashIndex - 1));
+
+            uint ipSayi = IpToUInt(ip);
+            uint maske = cidr == 0 ? 0 : 0xFFFFFFFF << (32 - cidr);
+
+            uint agAdresi = ipSayi & maske;
+            uint yayinAdresi = agAdresi | ~maske;
+
+            long toplamAdres = (long)Math.Pow(2, 32 - cidr);
+            long kullanilabilirHost = cidr >= 31 ? 0 : toplamAdres - 2;
+
+            string ilkIp = cidr >= 31 ? UIntToIp(agAdresi).ToString() : UIntToIp(agAdresi + 1).ToString();
+            string sonIp = cidr >= 31 ? UIntToIp(yayinAdresi).ToString() : UIntToIp(yayinAdresi - 1).ToString();
+
+            lblNetwork.Text = UIntToIp(agAdresi).ToString();
+            lblBroadcast.Text = UIntToIp(yayinAdresi).ToString();
+            lblIlkIp.Text = ilkIp;
+            lblSonIp.Text = sonIp;
+            lblHostSayisi.Text = kullanilabilirHost.ToString();
+            lblCidr.Text = "/" + cidr;
         }
 
         private void btnHesapla_MouseHover(object sender, EventArgs e)
@@ -693,6 +748,20 @@ namespace NetScope
             {
                 return -1;
             }
+        }
+
+        private uint IpToUInt(IPAddress ip)
+        {
+            byte[] bayt = ip.GetAddressBytes();
+            if (BitConverter.IsLittleEndian) Array.Reverse(bayt);
+            return BitConverter.ToUInt32(bayt, 0);
+        }
+
+        private IPAddress UIntToIp(uint deger)
+        {
+            byte[] bayt = BitConverter.GetBytes(deger);
+            if (BitConverter.IsLittleEndian) Array.Reverse(bayt);
+            return new IPAddress(bayt);
         }
 
 

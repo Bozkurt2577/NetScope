@@ -30,6 +30,26 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetScope));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.PanelSubnetHesaplayıcı = new System.Windows.Forms.Panel();
+            this.btnHesapla = new System.Windows.Forms.Button();
+            this.GroupSonuçlar = new System.Windows.Forms.GroupBox();
+            this.lblCidr = new System.Windows.Forms.Label();
+            this.lblCidrBaslik = new System.Windows.Forms.Label();
+            this.lblHostSayisi = new System.Windows.Forms.Label();
+            this.lblHostSayisiBaslik = new System.Windows.Forms.Label();
+            this.lblSonIp = new System.Windows.Forms.Label();
+            this.lblSonIpBaslik = new System.Windows.Forms.Label();
+            this.lblIlkIp = new System.Windows.Forms.Label();
+            this.lblIlkIpBaslik = new System.Windows.Forms.Label();
+            this.lblBroadcast = new System.Windows.Forms.Label();
+            this.lblBroadcastBaslik = new System.Windows.Forms.Label();
+            this.lblNetwork = new System.Windows.Forms.Label();
+            this.lblNetworkBaslik = new System.Windows.Forms.Label();
+            this.lbnSubnetMaskesi = new System.Windows.Forms.Label();
+            this.lbnIPAdresi = new System.Windows.Forms.Label();
+            this.ComboBoxSubnet = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PanelPing = new System.Windows.Forms.Panel();
             this.panelAgim = new System.Windows.Forms.Panel();
             this.grpAgDurumu = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,13 +69,6 @@
             this.lblPing = new System.Windows.Forms.Label();
             this.lblUpload = new System.Windows.Forms.Label();
             this.lblDownload = new System.Windows.Forms.Label();
-            this.PanelSubnetHesaplayıcı = new System.Windows.Forms.Panel();
-            this.btnHesapla = new System.Windows.Forms.Button();
-            this.GroupSonuçlar = new System.Windows.Forms.GroupBox();
-            this.lbnSubnetMaskesi = new System.Windows.Forms.Label();
-            this.lbnIPAdresi = new System.Windows.Forms.Label();
-            this.ComboBoxSubnet = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Bilgi = new System.Windows.Forms.Panel();
             this.rtbBilgi = new System.Windows.Forms.Label();
             this.lblBilgiBaslik = new System.Windows.Forms.Label();
@@ -70,13 +83,13 @@
             this.btnIpHesaplayici = new System.Windows.Forms.Button();
             this.btnAğim = new System.Windows.Forms.Button();
             this.lblLogo = new System.Windows.Forms.Label();
-            this.PanelPing = new System.Windows.Forms.Panel();
             this.panelContent.SuspendLayout();
+            this.PanelSubnetHesaplayıcı.SuspendLayout();
+            this.GroupSonuçlar.SuspendLayout();
             this.panelAgim.SuspendLayout();
             this.grpAgDurumu.SuspendLayout();
             this.panelHizTesti.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.PanelSubnetHesaplayıcı.SuspendLayout();
             this.Bilgi.SuspendLayout();
             this.Ayarlar.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,6 +110,226 @@
             this.panelContent.Size = new System.Drawing.Size(600, 450);
             this.panelContent.TabIndex = 3;
             this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // PanelSubnetHesaplayıcı
+            // 
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.btnHesapla);
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.GroupSonuçlar);
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.lbnSubnetMaskesi);
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.lbnIPAdresi);
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.ComboBoxSubnet);
+            this.PanelSubnetHesaplayıcı.Controls.Add(this.textBox1);
+            this.PanelSubnetHesaplayıcı.Location = new System.Drawing.Point(0, 0);
+            this.PanelSubnetHesaplayıcı.Name = "PanelSubnetHesaplayıcı";
+            this.PanelSubnetHesaplayıcı.Size = new System.Drawing.Size(600, 500);
+            this.PanelSubnetHesaplayıcı.TabIndex = 2;
+            this.PanelSubnetHesaplayıcı.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelSubnetHesaplayıcı_Paint);
+            // 
+            // btnHesapla
+            // 
+            this.btnHesapla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
+            this.btnHesapla.ForeColor = System.Drawing.Color.White;
+            this.btnHesapla.Location = new System.Drawing.Point(69, 292);
+            this.btnHesapla.Name = "btnHesapla";
+            this.btnHesapla.Size = new System.Drawing.Size(97, 34);
+            this.btnHesapla.TabIndex = 5;
+            this.btnHesapla.Text = "Hesapla";
+            this.btnHesapla.UseVisualStyleBackColor = false;
+            this.btnHesapla.Click += new System.EventHandler(this.btnHesapla_Click);
+            this.btnHesapla.MouseHover += new System.EventHandler(this.btnHesapla_MouseHover);
+            // 
+            // GroupSonuçlar
+            // 
+            this.GroupSonuçlar.Controls.Add(this.lblCidr);
+            this.GroupSonuçlar.Controls.Add(this.lblCidrBaslik);
+            this.GroupSonuçlar.Controls.Add(this.lblHostSayisi);
+            this.GroupSonuçlar.Controls.Add(this.lblHostSayisiBaslik);
+            this.GroupSonuçlar.Controls.Add(this.lblSonIp);
+            this.GroupSonuçlar.Controls.Add(this.lblSonIpBaslik);
+            this.GroupSonuçlar.Controls.Add(this.lblIlkIp);
+            this.GroupSonuçlar.Controls.Add(this.lblIlkIpBaslik);
+            this.GroupSonuçlar.Controls.Add(this.lblBroadcast);
+            this.GroupSonuçlar.Controls.Add(this.lblBroadcastBaslik);
+            this.GroupSonuçlar.Controls.Add(this.lblNetwork);
+            this.GroupSonuçlar.Controls.Add(this.lblNetworkBaslik);
+            this.GroupSonuçlar.ForeColor = System.Drawing.Color.White;
+            this.GroupSonuçlar.Location = new System.Drawing.Point(247, 53);
+            this.GroupSonuçlar.Name = "GroupSonuçlar";
+            this.GroupSonuçlar.Size = new System.Drawing.Size(267, 354);
+            this.GroupSonuçlar.TabIndex = 4;
+            this.GroupSonuçlar.TabStop = false;
+            this.GroupSonuçlar.Text = "Sonuçlar";
+            // 
+            // lblCidr
+            // 
+            this.lblCidr.AutoSize = true;
+            this.lblCidr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCidr.ForeColor = System.Drawing.Color.White;
+            this.lblCidr.Location = new System.Drawing.Point(15, 298);
+            this.lblCidr.Name = "lblCidr";
+            this.lblCidr.Size = new System.Drawing.Size(11, 13);
+            this.lblCidr.TabIndex = 11;
+            this.lblCidr.Text = "-";
+            // 
+            // lblCidrBaslik
+            // 
+            this.lblCidrBaslik.AutoSize = true;
+            this.lblCidrBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblCidrBaslik.Location = new System.Drawing.Point(15, 280);
+            this.lblCidrBaslik.Name = "lblCidrBaslik";
+            this.lblCidrBaslik.Size = new System.Drawing.Size(36, 13);
+            this.lblCidrBaslik.TabIndex = 10;
+            this.lblCidrBaslik.Text = "CIDR:";
+            // 
+            // lblHostSayisi
+            // 
+            this.lblHostSayisi.AutoSize = true;
+            this.lblHostSayisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblHostSayisi.ForeColor = System.Drawing.Color.White;
+            this.lblHostSayisi.Location = new System.Drawing.Point(15, 248);
+            this.lblHostSayisi.Name = "lblHostSayisi";
+            this.lblHostSayisi.Size = new System.Drawing.Size(11, 13);
+            this.lblHostSayisi.TabIndex = 9;
+            this.lblHostSayisi.Text = "-";
+            // 
+            // lblHostSayisiBaslik
+            // 
+            this.lblHostSayisiBaslik.AutoSize = true;
+            this.lblHostSayisiBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblHostSayisiBaslik.Location = new System.Drawing.Point(15, 230);
+            this.lblHostSayisiBaslik.Name = "lblHostSayisiBaslik";
+            this.lblHostSayisiBaslik.Size = new System.Drawing.Size(62, 13);
+            this.lblHostSayisiBaslik.TabIndex = 8;
+            this.lblHostSayisiBaslik.Text = "Host Sayısı:";
+            // 
+            // lblSonIp
+            // 
+            this.lblSonIp.AutoSize = true;
+            this.lblSonIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSonIp.ForeColor = System.Drawing.Color.White;
+            this.lblSonIp.Location = new System.Drawing.Point(15, 198);
+            this.lblSonIp.Name = "lblSonIp";
+            this.lblSonIp.Size = new System.Drawing.Size(11, 13);
+            this.lblSonIp.TabIndex = 7;
+            this.lblSonIp.Text = "-";
+            // 
+            // lblSonIpBaslik
+            // 
+            this.lblSonIpBaslik.AutoSize = true;
+            this.lblSonIpBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblSonIpBaslik.Location = new System.Drawing.Point(15, 180);
+            this.lblSonIpBaslik.Name = "lblSonIpBaslik";
+            this.lblSonIpBaslik.Size = new System.Drawing.Size(99, 13);
+            this.lblSonIpBaslik.TabIndex = 6;
+            this.lblSonIpBaslik.Text = "Son Kullanılabilir IP:";
+            // 
+            // lblIlkIp
+            // 
+            this.lblIlkIp.AutoSize = true;
+            this.lblIlkIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblIlkIp.ForeColor = System.Drawing.Color.White;
+            this.lblIlkIp.Location = new System.Drawing.Point(15, 148);
+            this.lblIlkIp.Name = "lblIlkIp";
+            this.lblIlkIp.Size = new System.Drawing.Size(11, 13);
+            this.lblIlkIp.TabIndex = 5;
+            this.lblIlkIp.Text = "-";
+            // 
+            // lblIlkIpBaslik
+            // 
+            this.lblIlkIpBaslik.AutoSize = true;
+            this.lblIlkIpBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblIlkIpBaslik.Location = new System.Drawing.Point(15, 130);
+            this.lblIlkIpBaslik.Name = "lblIlkIpBaslik";
+            this.lblIlkIpBaslik.Size = new System.Drawing.Size(91, 13);
+            this.lblIlkIpBaslik.TabIndex = 4;
+            this.lblIlkIpBaslik.Text = "İlk Kullanılabilir IP:";
+            // 
+            // lblBroadcast
+            // 
+            this.lblBroadcast.AutoSize = true;
+            this.lblBroadcast.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblBroadcast.ForeColor = System.Drawing.Color.White;
+            this.lblBroadcast.Location = new System.Drawing.Point(15, 98);
+            this.lblBroadcast.Name = "lblBroadcast";
+            this.lblBroadcast.Size = new System.Drawing.Size(11, 13);
+            this.lblBroadcast.TabIndex = 3;
+            this.lblBroadcast.Text = "-";
+            // 
+            // lblBroadcastBaslik
+            // 
+            this.lblBroadcastBaslik.AutoSize = true;
+            this.lblBroadcastBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblBroadcastBaslik.Location = new System.Drawing.Point(15, 80);
+            this.lblBroadcastBaslik.Name = "lblBroadcastBaslik";
+            this.lblBroadcastBaslik.Size = new System.Drawing.Size(58, 13);
+            this.lblBroadcastBaslik.TabIndex = 2;
+            this.lblBroadcastBaslik.Text = "Broadcast:";
+            // 
+            // lblNetwork
+            // 
+            this.lblNetwork.AutoSize = true;
+            this.lblNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblNetwork.ForeColor = System.Drawing.Color.White;
+            this.lblNetwork.Location = new System.Drawing.Point(15, 48);
+            this.lblNetwork.Name = "lblNetwork";
+            this.lblNetwork.Size = new System.Drawing.Size(11, 13);
+            this.lblNetwork.TabIndex = 1;
+            this.lblNetwork.Text = "-";
+            // 
+            // lblNetworkBaslik
+            // 
+            this.lblNetworkBaslik.AutoSize = true;
+            this.lblNetworkBaslik.ForeColor = System.Drawing.Color.White;
+            this.lblNetworkBaslik.Location = new System.Drawing.Point(15, 30);
+            this.lblNetworkBaslik.Name = "lblNetworkBaslik";
+            this.lblNetworkBaslik.Size = new System.Drawing.Size(50, 13);
+            this.lblNetworkBaslik.TabIndex = 0;
+            this.lblNetworkBaslik.Text = "Network:";
+            // 
+            // lbnSubnetMaskesi
+            // 
+            this.lbnSubnetMaskesi.AutoSize = true;
+            this.lbnSubnetMaskesi.ForeColor = System.Drawing.Color.White;
+            this.lbnSubnetMaskesi.Location = new System.Drawing.Point(60, 212);
+            this.lbnSubnetMaskesi.Name = "lbnSubnetMaskesi";
+            this.lbnSubnetMaskesi.Size = new System.Drawing.Size(83, 13);
+            this.lbnSubnetMaskesi.TabIndex = 3;
+            this.lbnSubnetMaskesi.Text = "Subnet Maskesi";
+            // 
+            // lbnIPAdresi
+            // 
+            this.lbnIPAdresi.AutoSize = true;
+            this.lbnIPAdresi.ForeColor = System.Drawing.Color.White;
+            this.lbnIPAdresi.Location = new System.Drawing.Point(61, 124);
+            this.lbnIPAdresi.Name = "lbnIPAdresi";
+            this.lbnIPAdresi.Size = new System.Drawing.Size(49, 13);
+            this.lbnIPAdresi.TabIndex = 2;
+            this.lbnIPAdresi.Text = "IP Adresi";
+            this.lbnIPAdresi.Click += new System.EventHandler(this.lbnIPAdresi_Click);
+            // 
+            // ComboBoxSubnet
+            // 
+            this.ComboBoxSubnet.FormattingEnabled = true;
+            this.ComboBoxSubnet.Location = new System.Drawing.Point(58, 237);
+            this.ComboBoxSubnet.Name = "ComboBoxSubnet";
+            this.ComboBoxSubnet.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxSubnet.TabIndex = 1;
+            this.ComboBoxSubnet.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSubnet_SelectedIndexChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(58, 145);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(121, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // PanelPing
+            // 
+            this.PanelPing.Location = new System.Drawing.Point(0, 0);
+            this.PanelPing.Name = "PanelPing";
+            this.PanelPing.Size = new System.Drawing.Size(600, 500);
+            this.PanelPing.TabIndex = 6;
             // 
             // panelAgim
             // 
@@ -318,81 +551,6 @@
             this.lblDownload.TabIndex = 1;
             this.lblDownload.Text = "Download: -- Mbps";
             // 
-            // PanelSubnetHesaplayıcı
-            // 
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.btnHesapla);
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.GroupSonuçlar);
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.lbnSubnetMaskesi);
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.lbnIPAdresi);
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.ComboBoxSubnet);
-            this.PanelSubnetHesaplayıcı.Controls.Add(this.textBox1);
-            this.PanelSubnetHesaplayıcı.Location = new System.Drawing.Point(0, 0);
-            this.PanelSubnetHesaplayıcı.Name = "PanelSubnetHesaplayıcı";
-            this.PanelSubnetHesaplayıcı.Size = new System.Drawing.Size(600, 500);
-            this.PanelSubnetHesaplayıcı.TabIndex = 2;
-            this.PanelSubnetHesaplayıcı.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelSubnetHesaplayıcı_Paint);
-            // 
-            // btnHesapla
-            // 
-            this.btnHesapla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
-            this.btnHesapla.ForeColor = System.Drawing.Color.White;
-            this.btnHesapla.Location = new System.Drawing.Point(69, 292);
-            this.btnHesapla.Name = "btnHesapla";
-            this.btnHesapla.Size = new System.Drawing.Size(97, 34);
-            this.btnHesapla.TabIndex = 5;
-            this.btnHesapla.Text = "Hesapla";
-            this.btnHesapla.UseVisualStyleBackColor = false;
-            this.btnHesapla.Click += new System.EventHandler(this.btnHesapla_Click);
-            this.btnHesapla.MouseHover += new System.EventHandler(this.btnHesapla_MouseHover);
-            // 
-            // GroupSonuçlar
-            // 
-            this.GroupSonuçlar.ForeColor = System.Drawing.Color.White;
-            this.GroupSonuçlar.Location = new System.Drawing.Point(247, 53);
-            this.GroupSonuçlar.Name = "GroupSonuçlar";
-            this.GroupSonuçlar.Size = new System.Drawing.Size(267, 354);
-            this.GroupSonuçlar.TabIndex = 4;
-            this.GroupSonuçlar.TabStop = false;
-            this.GroupSonuçlar.Text = "Sonuçlar";
-            // 
-            // lbnSubnetMaskesi
-            // 
-            this.lbnSubnetMaskesi.AutoSize = true;
-            this.lbnSubnetMaskesi.ForeColor = System.Drawing.Color.White;
-            this.lbnSubnetMaskesi.Location = new System.Drawing.Point(60, 212);
-            this.lbnSubnetMaskesi.Name = "lbnSubnetMaskesi";
-            this.lbnSubnetMaskesi.Size = new System.Drawing.Size(83, 13);
-            this.lbnSubnetMaskesi.TabIndex = 3;
-            this.lbnSubnetMaskesi.Text = "Subnet Maskesi";
-            // 
-            // lbnIPAdresi
-            // 
-            this.lbnIPAdresi.AutoSize = true;
-            this.lbnIPAdresi.ForeColor = System.Drawing.Color.White;
-            this.lbnIPAdresi.Location = new System.Drawing.Point(61, 124);
-            this.lbnIPAdresi.Name = "lbnIPAdresi";
-            this.lbnIPAdresi.Size = new System.Drawing.Size(49, 13);
-            this.lbnIPAdresi.TabIndex = 2;
-            this.lbnIPAdresi.Text = "IP Adresi";
-            this.lbnIPAdresi.Click += new System.EventHandler(this.lbnIPAdresi_Click);
-            // 
-            // ComboBoxSubnet
-            // 
-            this.ComboBoxSubnet.FormattingEnabled = true;
-            this.ComboBoxSubnet.Location = new System.Drawing.Point(58, 237);
-            this.ComboBoxSubnet.Name = "ComboBoxSubnet";
-            this.ComboBoxSubnet.Size = new System.Drawing.Size(121, 21);
-            this.ComboBoxSubnet.TabIndex = 1;
-            this.ComboBoxSubnet.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSubnet_SelectedIndexChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(58, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // Bilgi
             // 
             this.Bilgi.Controls.Add(this.rtbBilgi);
@@ -566,13 +724,6 @@
             this.lblLogo.Text = "NetScope";
             this.lblLogo.Click += new System.EventHandler(this.lblLogo_Click);
             // 
-            // PanelPing
-            // 
-            this.PanelPing.Location = new System.Drawing.Point(0, 0);
-            this.PanelPing.Name = "PanelPing";
-            this.PanelPing.Size = new System.Drawing.Size(600, 500);
-            this.PanelPing.TabIndex = 6;
-            // 
             // NetScope
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,6 +741,10 @@
             this.Text = "NetScope";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelContent.ResumeLayout(false);
+            this.PanelSubnetHesaplayıcı.ResumeLayout(false);
+            this.PanelSubnetHesaplayıcı.PerformLayout();
+            this.GroupSonuçlar.ResumeLayout(false);
+            this.GroupSonuçlar.PerformLayout();
             this.panelAgim.ResumeLayout(false);
             this.panelAgim.PerformLayout();
             this.grpAgDurumu.ResumeLayout(false);
@@ -598,8 +753,6 @@
             this.panelHizTesti.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.PanelSubnetHesaplayıcı.ResumeLayout(false);
-            this.PanelSubnetHesaplayıcı.PerformLayout();
             this.Bilgi.ResumeLayout(false);
             this.Bilgi.PerformLayout();
             this.Ayarlar.ResumeLayout(false);
@@ -653,6 +806,18 @@
         private System.Windows.Forms.Label lbnSubnetMaskesi;
         private System.Windows.Forms.Label lbnIPAdresi;
         private System.Windows.Forms.Button btnHesapla;
+        private System.Windows.Forms.Label lblNetworkBaslik;
+        private System.Windows.Forms.Label lblNetwork;
+        private System.Windows.Forms.Label lblBroadcastBaslik;
+        private System.Windows.Forms.Label lblBroadcast;
+        private System.Windows.Forms.Label lblIlkIpBaslik;
+        private System.Windows.Forms.Label lblIlkIp;
+        private System.Windows.Forms.Label lblSonIpBaslik;
+        private System.Windows.Forms.Label lblSonIp;
+        private System.Windows.Forms.Label lblHostSayisiBaslik;
+        private System.Windows.Forms.Label lblHostSayisi;
+        private System.Windows.Forms.Label lblCidrBaslik;
+        private System.Windows.Forms.Label lblCidr;
         private System.Windows.Forms.Panel PanelPing;
     }
 }
